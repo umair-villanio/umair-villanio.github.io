@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Umair's Blog</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #0a0a0a;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+.container {
+  max-width: 800px;
+  width: 100%;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+header h1 {
+  font-size: 42px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 15px;
+  color: #666;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #333, transparent);
+  margin: 40px 0;
+}
+
+/* Blog Card */
+.blog-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 40px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.blog-card:hover {
+  background: rgba(240, 208, 96, 0.05);
+  border-color: rgba(240, 208, 96, 0.2);
+  transform: translateY(-4px);
+}
+
+.blog-card .tag {
+  display: inline-block;
+  font-size: 11px;
+  color: #f0d060;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: rgba(240, 208, 96, 0.1);
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+}
+
+.blog-card .arabic-preview {
+  font-family: 'Amiri', serif;
+  font-size: 32px;
+  color: #f0d060;
+  text-shadow: 0 0 30px rgba(240, 208, 96, 0.2);
+  margin-bottom: 16px;
+}
+
+.blog-card h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.blog-card p {
+  font-size: 15px;
+  color: #888;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.blog-card .read-more {
+  font-size: 13px;
+  color: #f0d060;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.blog-card .read-more span {
+  transition: margin-left 0.3s;
+}
+
+.blog-card:hover .read-more span {
+  margin-left: 8px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 80px;
+  color: #333;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>Umair's Blog</h1>
+    <p>Thoughts, Reflections & Learning</p>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- Blog Post 1 -->
+  <a href="la-ilaha-illallah-breakdown.html" class="blog-card">
+    <div class="tag">Tawheed</div>
+    <div class="arabic-preview">لَا إِلَٰهَ إِلَّا ٱللَّٰهُ</div>
+    <h2>La Ilaha Illallah — The Words That Carry the Weight of Everything</h2>
+    <p>A breakdown of the most powerful declaration a human being can ever make. Word by word. Name by name. Through all 99 Names of Allah.</p>
+    <div class="read-more">Read More <span>&rarr;</span></div>
+  </a>
+
+  <footer>
+    Built with sincerity
+  </footer>
+
+</div>
+
+</body>
+</html>
