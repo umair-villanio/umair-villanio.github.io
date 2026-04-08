@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Ilaha Illallah - Breakdown</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #0a0a0a;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 1000px;
+  width: 100%;
+}
+
+/* Arabic Header */
+.arabic-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.arabic-text {
+  font-family: 'Amiri', serif;
+  font-size: 72px;
+  color: #f0d060;
+  text-shadow: 0 0 40px rgba(240, 208, 96, 0.3);
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #888;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+}
+
+/* Breakdown Section */
+.breakdown {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin: 40px 0 60px;
+  flex-wrap: wrap;
+}
+
+.word-card {
+  text-align: center;
+  padding: 30px 25px;
+  position: relative;
+}
+
+.word-card:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, #f0d060, transparent);
+}
+
+.word-arabic {
+  font-family: 'Amiri', serif;
+  font-size: 36px;
+  color: #f0d060;
+  margin-bottom: 8px;
+}
+
+.word-transliteration {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.word-meaning {
+  font-size: 13px;
+  color: #aaa;
+  max-width: 200px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.word-meaning strong {
+  color: #f0d060;
+  font-weight: 600;
+}
+
+/* Connector */
+.connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0;
+  gap: 20px;
+}
+
+.connector-line {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(to right, transparent, #333, transparent);
+}
+
+.connector-text {
+  font-size: 12px;
+  color: #666;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+/* Full Meaning */
+.full-meaning {
+  text-align: center;
+  background: linear-gradient(135deg, rgba(240, 208, 96, 0.08), rgba(240, 208, 96, 0.02));
+  border: 1px solid rgba(240, 208, 96, 0.15);
+  border-radius: 16px;
+  padding: 35px 40px;
+  margin: 0 auto 60px;
+  max-width: 800px;
+}
+
+.full-meaning p {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: #ddd;
+}
+
+.full-meaning strong {
+  color: #f0d060;
+  font-weight: 700;
+}
+
+/* 99 Names Section */
+.names-section {
+  margin-top: 20px;
+}
+
+.names-title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.names-title h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.names-title p {
+  color: #888;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.names-subtitle {
+  text-align: center;
+  color: #aaa;
+  font-size: 15px;
+  margin-bottom: 40px;
+  line-height: 1.7;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.names-subtitle span {
+  color: #f0d060;
+}
+
+.names-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 50px;
+}
+
+.name-row {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s;
+}
+
+.name-row:hover {
+  background: rgba(240, 208, 96, 0.06);
+  border-color: rgba(240, 208, 96, 0.2);
+}
+
+.name-num {
+  font-size: 11px;
+  color: #555;
+  font-weight: 600;
+  min-width: 22px;
+}
+
+.name-content {
+  flex: 1;
+}
+
+.name-la {
+  font-size: 12px;
+  color: #e85d5d;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.name-illa {
+  font-size: 15px;
+  color: #f0d060;
+  font-weight: 700;
+}
+
+.name-eng {
+  font-size: 11px;
+  color: #777;
+  margin-top: 2px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 30px;
+  color: #444;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+/* The Sun Analogy */
+.analogy {
+  text-align: center;
+  margin: 0 auto 50px;
+  max-width: 700px;
+  padding: 30px;
+}
+
+.analogy-icon {
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+.analogy p {
+  font-size: 16px;
+  color: #999;
+  line-height: 1.8;
+}
+
+.analogy .highlight {
+  color: #f0d060;
+  font-weight: 600;
+}
+
+.analogy .strike {
+  text-decoration: line-through;
+  color: #e85d5d;
+  opacity: 0.7;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Arabic Header -->
+  <div class="arabic-header">
+    <div class="arabic-text">لَا إِلَٰهَ إِلَّا ٱللَّٰهُ</div>
+    <div class="subtitle">The Declaration of Tawheed</div>
+  </div>
+
+  <!-- Word Breakdown -->
+  <div class="breakdown">
+    <div class="word-card">
+      <div class="word-arabic">لَا</div>
+      <div class="word-transliteration">LA</div>
+      <div class="word-meaning">Absolutely, truly <strong>NO</strong>. Complete negation. None. Zero.</div>
+    </div>
+    <div class="word-card">
+      <div class="word-arabic">إِلَٰهَ</div>
+      <div class="word-transliteration">ILAHA</div>
+      <div class="word-meaning">A god. Any deity. Anything worshipped. Any object of devotion.</div>
+    </div>
+    <div class="word-card">
+      <div class="word-arabic">إِلَّا</div>
+      <div class="word-transliteration">ILLA</div>
+      <div class="word-meaning"><strong>Except.</strong> The turning point. After denying everything...</div>
+    </div>
+    <div class="word-card">
+      <div class="word-arabic">ٱللَّٰهُ</div>
+      <div class="word-transliteration">ALLAH</div>
+      <div class="word-meaning"><strong>THE God.</strong> Al-Ilah. The One. The Only. The Definite. No other.</div>
+    </div>
+  </div>
+
+  <!-- Full Meaning -->
+  <div class="full-meaning">
+    <p>There is <strong>absolutely no god</strong> — no deity, no object of worship, no authority, no sustainer — <strong>except THE God</strong>, Allah alone.</p>
+  </div>
+
+  <!-- Sun Analogy -->
+  <div class="analogy">
+    <div class="analogy-icon">&#9788;</div>
+    <p>
+      There is only one Sun. We don't say <span class="strike">"a sun"</span> — we say <span class="highlight">"THE Sun"</span>.<br>
+      Similarly, there is no <span class="strike">"a god"</span> — there is only <span class="highlight">"THE God"</span>.<br><br>
+      <span class="highlight">Allah = Al-Ilah = THE God.</span>
+    </p>
+  </div>
+
+  <!-- Connector -->
+  <div class="connector">
+    <div class="connector-line"></div>
+    <div class="connector-text">Now replace Ilaha &amp; Allah with the 99 Names</div>
+    <div class="connector-line"></div>
+  </div>
+
+  <!-- 99 Names Section -->
+  <div class="names-section">
+    <div class="names-title">
+      <h2>The 99 Names of Allah</h2>
+      <p>ASMA UL HUSNA</p>
+    </div>
+    <div class="names-subtitle">
+      Each name of Allah can replace <span>Ilaha</span> (in its indefinite form) and <span>Allah</span> (in its definite form) — proving that every perfect attribute belongs to <span>Him alone</span>.
+    </div>
+
+    <div class="names-grid">
+      <div class="name-row"><div class="name-num">01</div><div class="name-content"><div class="name-la">La Rahmana illa</div><div class="name-illa">Ar-Rahman</div><div class="name-eng">No Most Gracious except THE Most Gracious</div></div></div>
+      <div class="name-row"><div class="name-num">02</div><div class="name-content"><div class="name-la">La Raheema illa</div><div class="name-illa">Ar-Raheem</div><div class="name-eng">No Most Merciful except THE Most Merciful</div></div></div>
+      <div class="name-row"><div class="name-num">03</div><div class="name-content"><div class="name-la">La Malika illa</div><div class="name-illa">Al-Malik</div><div class="name-eng">No King except THE King</div></div></div>
+      <div class="name-row"><div class="name-num">04</div><div class="name-content"><div class="name-la">La Quddoosa illa</div><div class="name-illa">Al-Quddus</div><div class="name-eng">No Holy One except THE Holy One</div></div></div>
+      <div class="name-row"><div class="name-num">05</div><div class="name-content"><div class="name-la">La Salaama illa</div><div class="name-illa">As-Salam</div><div class="name-eng">No Source of Peace except THE Source of Peace</div></div></div>
+      <div class="name-row"><div class="name-num">06</div><div class="name-content"><div class="name-la">La Mu'mina illa</div><div class="name-illa">Al-Mu'min</div><div class="name-eng">No Granter of Security except THE Granter of Security</div></div></div>
+      <div class="name-row"><div class="name-num">07</div><div class="name-content"><div class="name-la">La Muhaymina illa</div><div class="name-illa">Al-Muhaymin</div><div class="name-eng">No Guardian except THE Guardian</div></div></div>
+      <div class="name-row"><div class="name-num">08</div><div class="name-content"><div class="name-la">La Azeeza illa</div><div class="name-illa">Al-Aziz</div><div class="name-eng">No Almighty except THE Almighty</div></div></div>
+      <div class="name-row"><div class="name-num">09</div><div class="name-content"><div class="name-la">La Jabbaara illa</div><div class="name-illa">Al-Jabbar</div><div class="name-eng">No Compeller except THE Compeller</div></div></div>
+      <div class="name-row"><div class="name-num">10</div><div class="name-content"><div class="name-la">La Mutakabbira illa</div><div class="name-illa">Al-Mutakabbir</div><div class="name-eng">No Supreme except THE Supreme</div></div></div>
+      <div class="name-row"><div class="name-num">11</div><div class="name-content"><div class="name-la">La Khaliqa illa</div><div class="name-illa">Al-Khaliq</div><div class="name-eng">No Creator except THE Creator</div></div></div>
+      <div class="name-row"><div class="name-num">12</div><div class="name-content"><div class="name-la">La Baari'a illa</div><div class="name-illa">Al-Bari</div><div class="name-eng">No Originator except THE Originator</div></div></div>
+      <div class="name-row"><div class="name-num">13</div><div class="name-content"><div class="name-la">La Musawwira illa</div><div class="name-illa">Al-Musawwir</div><div class="name-eng">No Fashioner except THE Fashioner</div></div></div>
+      <div class="name-row"><div class="name-num">14</div><div class="name-content"><div class="name-la">La Ghaffaara illa</div><div class="name-illa">Al-Ghaffar</div><div class="name-eng">No Constantly Forgiving except THE Constantly Forgiving</div></div></div>
+      <div class="name-row"><div class="name-num">15</div><div class="name-content"><div class="name-la">La Qahhaara illa</div><div class="name-illa">Al-Qahhar</div><div class="name-eng">No Subduer except THE Subduer</div></div></div>
+      <div class="name-row"><div class="name-num">16</div><div class="name-content"><div class="name-la">La Wahhaaba illa</div><div class="name-illa">Al-Wahhab</div><div class="name-eng">No Bestower except THE Bestower</div></div></div>
+      <div class="name-row"><div class="name-num">17</div><div class="name-content"><div class="name-la">La Razzaaqa illa</div><div class="name-illa">Ar-Razzaq</div><div class="name-eng">No Provider except THE Provider</div></div></div>
+      <div class="name-row"><div class="name-num">18</div><div class="name-content"><div class="name-la">La Fattaaha illa</div><div class="name-illa">Al-Fattah</div><div class="name-eng">No Opener except THE Opener</div></div></div>
+      <div class="name-row"><div class="name-num">19</div><div class="name-content"><div class="name-la">La Aleema illa</div><div class="name-illa">Al-Aleem</div><div class="name-eng">No All-Knowing except THE All-Knowing</div></div></div>
+      <div class="name-row"><div class="name-num">20</div><div class="name-content"><div class="name-la">La Qaabida illa</div><div class="name-illa">Al-Qabid</div><div class="name-eng">No Constrictor except THE Constrictor</div></div></div>
+      <div class="name-row"><div class="name-num">21</div><div class="name-content"><div class="name-la">La Baasita illa</div><div class="name-illa">Al-Basit</div><div class="name-eng">No Expander except THE Expander</div></div></div>
+      <div class="name-row"><div class="name-num">22</div><div class="name-content"><div class="name-la">La Khaafida illa</div><div class="name-illa">Al-Khafid</div><div class="name-eng">No Abaser except THE Abaser</div></div></div>
+      <div class="name-row"><div class="name-num">23</div><div class="name-content"><div class="name-la">La Raafi'a illa</div><div class="name-illa">Ar-Rafi</div><div class="name-eng">No Exalter except THE Exalter</div></div></div>
+      <div class="name-row"><div class="name-num">24</div><div class="name-content"><div class="name-la">La Mu'izza illa</div><div class="name-illa">Al-Mu'izz</div><div class="name-eng">No Bestower of Honor except THE Bestower of Honor</div></div></div>
+      <div class="name-row"><div class="name-num">25</div><div class="name-content"><div class="name-la">La Mudhilla illa</div><div class="name-illa">Al-Mudhill</div><div class="name-eng">No Humiliator except THE Humiliator</div></div></div>
+      <div class="name-row"><div class="name-num">26</div><div class="name-content"><div class="name-la">La Samee'a illa</div><div class="name-illa">As-Sami</div><div class="name-eng">No All-Hearing except THE All-Hearing</div></div></div>
+      <div class="name-row"><div class="name-num">27</div><div class="name-content"><div class="name-la">La Baseera illa</div><div class="name-illa">Al-Basir</div><div class="name-eng">No All-Seeing except THE All-Seeing</div></div></div>
+      <div class="name-row"><div class="name-num">28</div><div class="name-content"><div class="name-la">La Hakama illa</div><div class="name-illa">Al-Hakam</div><div class="name-eng">No Judge except THE Judge</div></div></div>
+      <div class="name-row"><div class="name-num">29</div><div class="name-content"><div class="name-la">La Adla illa</div><div class="name-illa">Al-Adl</div><div class="name-eng">No Just One except THE Just One</div></div></div>
+      <div class="name-row"><div class="name-num">30</div><div class="name-content"><div class="name-la">La Lateefa illa</div><div class="name-illa">Al-Latif</div><div class="name-eng">No Subtle One except THE Subtle One</div></div></div>
+      <div class="name-row"><div class="name-num">31</div><div class="name-content"><div class="name-la">La Khabeera illa</div><div class="name-illa">Al-Khabir</div><div class="name-eng">No All-Aware except THE All-Aware</div></div></div>
+      <div class="name-row"><div class="name-num">32</div><div class="name-content"><div class="name-la">La Haleema illa</div><div class="name-illa">Al-Halim</div><div class="name-eng">No Forbearing except THE Forbearing</div></div></div>
+      <div class="name-row"><div class="name-num">33</div><div class="name-content"><div class="name-la">La Azeema illa</div><div class="name-illa">Al-Azim</div><div class="name-eng">No Magnificent except THE Magnificent</div></div></div>
+      <div class="name-row"><div class="name-num">34</div><div class="name-content"><div class="name-la">La Ghafoora illa</div><div class="name-illa">Al-Ghafur</div><div class="name-eng">No Forgiving except THE Forgiving</div></div></div>
+      <div class="name-row"><div class="name-num">35</div><div class="name-content"><div class="name-la">La Shakoora illa</div><div class="name-illa">Ash-Shakur</div><div class="name-eng">No Appreciative except THE Appreciative</div></div></div>
+      <div class="name-row"><div class="name-num">36</div><div class="name-content"><div class="name-la">La Aliyya illa</div><div class="name-illa">Al-Ali</div><div class="name-eng">No Most High except THE Most High</div></div></div>
+      <div class="name-row"><div class="name-num">37</div><div class="name-content"><div class="name-la">La Kabeera illa</div><div class="name-illa">Al-Kabir</div><div class="name-eng">No Most Great except THE Most Great</div></div></div>
+      <div class="name-row"><div class="name-num">38</div><div class="name-content"><div class="name-la">La Hafeeza illa</div><div class="name-illa">Al-Hafiz</div><div class="name-eng">No Preserver except THE Preserver</div></div></div>
+      <div class="name-row"><div class="name-num">39</div><div class="name-content"><div class="name-la">La Muqeeta illa</div><div class="name-illa">Al-Muqit</div><div class="name-eng">No Nourisher except THE Nourisher</div></div></div>
+      <div class="name-row"><div class="name-num">40</div><div class="name-content"><div class="name-la">La Haseeba illa</div><div class="name-illa">Al-Hasib</div><div class="name-eng">No Reckoner except THE Reckoner</div></div></div>
+      <div class="name-row"><div class="name-num">41</div><div class="name-content"><div class="name-la">La Jaleela illa</div><div class="name-illa">Al-Jalil</div><div class="name-eng">No Majestic except THE Majestic</div></div></div>
+      <div class="name-row"><div class="name-num">42</div><div class="name-content"><div class="name-la">La Kareema illa</div><div class="name-illa">Al-Karim</div><div class="name-eng">No Generous except THE Generous</div></div></div>
+      <div class="name-row"><div class="name-num">43</div><div class="name-content"><div class="name-la">La Raqeeba illa</div><div class="name-illa">Ar-Raqib</div><div class="name-eng">No Watchful except THE Watchful</div></div></div>
+      <div class="name-row"><div class="name-num">44</div><div class="name-content"><div class="name-la">La Mujeeba illa</div><div class="name-illa">Al-Mujib</div><div class="name-eng">No Responsive except THE Responsive</div></div></div>
+      <div class="name-row"><div class="name-num">45</div><div class="name-content"><div class="name-la">La Waasi'a illa</div><div class="name-illa">Al-Wasi</div><div class="name-eng">No All-Encompassing except THE All-Encompassing</div></div></div>
+      <div class="name-row"><div class="name-num">46</div><div class="name-content"><div class="name-la">La Hakeema illa</div><div class="name-illa">Al-Hakim</div><div class="name-eng">No Wise except THE Wise</div></div></div>
+      <div class="name-row"><div class="name-num">47</div><div class="name-content"><div class="name-la">La Wadooda illa</div><div class="name-illa">Al-Wadud</div><div class="name-eng">No Loving except THE Loving</div></div></div>
+      <div class="name-row"><div class="name-num">48</div><div class="name-content"><div class="name-la">La Majeeda illa</div><div class="name-illa">Al-Majid</div><div class="name-eng">No Most Glorious except THE Most Glorious</div></div></div>
+      <div class="name-row"><div class="name-num">49</div><div class="name-content"><div class="name-la">La Baa'itha illa</div><div class="name-illa">Al-Ba'ith</div><div class="name-eng">No Resurrector except THE Resurrector</div></div></div>
+      <div class="name-row"><div class="name-num">50</div><div class="name-content"><div class="name-la">La Shaheeda illa</div><div class="name-illa">Ash-Shahid</div><div class="name-eng">No Witness except THE Witness</div></div></div>
+      <div class="name-row"><div class="name-num">51</div><div class="name-content"><div class="name-la">La Haqqa illa</div><div class="name-illa">Al-Haqq</div><div class="name-eng">No Truth except THE Truth</div></div></div>
+      <div class="name-row"><div class="name-num">52</div><div class="name-content"><div class="name-la">La Wakeela illa</div><div class="name-illa">Al-Wakil</div><div class="name-eng">No Trustee except THE Trustee</div></div></div>
+      <div class="name-row"><div class="name-num">53</div><div class="name-content"><div class="name-la">La Qawiyya illa</div><div class="name-illa">Al-Qawiyy</div><div class="name-eng">No Strong One except THE Strong One</div></div></div>
+      <div class="name-row"><div class="name-num">54</div><div class="name-content"><div class="name-la">La Mateena illa</div><div class="name-illa">Al-Matin</div><div class="name-eng">No Firm One except THE Firm One</div></div></div>
+      <div class="name-row"><div class="name-num">55</div><div class="name-content"><div class="name-la">La Waliyya illa</div><div class="name-illa">Al-Waliyy</div><div class="name-eng">No Protecting Friend except THE Protecting Friend</div></div></div>
+      <div class="name-row"><div class="name-num">56</div><div class="name-content"><div class="name-la">La Hameedan illa</div><div class="name-illa">Al-Hamid</div><div class="name-eng">No Praiseworthy except THE Praiseworthy</div></div></div>
+      <div class="name-row"><div class="name-num">57</div><div class="name-content"><div class="name-la">La Muhsiya illa</div><div class="name-illa">Al-Muhsi</div><div class="name-eng">No Accounter except THE Accounter</div></div></div>
+      <div class="name-row"><div class="name-num">58</div><div class="name-content"><div class="name-la">La Mubdi'a illa</div><div class="name-illa">Al-Mubdi</div><div class="name-eng">No Originator except THE Originator</div></div></div>
+      <div class="name-row"><div class="name-num">59</div><div class="name-content"><div class="name-la">La Mu'eeda illa</div><div class="name-illa">Al-Mu'id</div><div class="name-eng">No Restorer except THE Restorer</div></div></div>
+      <div class="name-row"><div class="name-num">60</div><div class="name-content"><div class="name-la">La Muhyiya illa</div><div class="name-illa">Al-Muhyi</div><div class="name-eng">No Giver of Life except THE Giver of Life</div></div></div>
+      <div class="name-row"><div class="name-num">61</div><div class="name-content"><div class="name-la">La Mumeeta illa</div><div class="name-illa">Al-Mumit</div><div class="name-eng">No Taker of Life except THE Taker of Life</div></div></div>
+      <div class="name-row"><div class="name-num">62</div><div class="name-content"><div class="name-la">La Hayya illa</div><div class="name-illa">Al-Hayy</div><div class="name-eng">No Ever-Living except THE Ever-Living</div></div></div>
+      <div class="name-row"><div class="name-num">63</div><div class="name-content"><div class="name-la">La Qayyooma illa</div><div class="name-illa">Al-Qayyum</div><div class="name-eng">No Self-Sustaining except THE Self-Sustaining</div></div></div>
+      <div class="name-row"><div class="name-num">64</div><div class="name-content"><div class="name-la">La Waajida illa</div><div class="name-illa">Al-Wajid</div><div class="name-eng">No Finder except THE Finder</div></div></div>
+      <div class="name-row"><div class="name-num">65</div><div class="name-content"><div class="name-la">La Maajida illa</div><div class="name-illa">Al-Majid</div><div class="name-eng">No Noble except THE Noble</div></div></div>
+      <div class="name-row"><div class="name-num">66</div><div class="name-content"><div class="name-la">La Waahida illa</div><div class="name-illa">Al-Wahid</div><div class="name-eng">No One except THE One</div></div></div>
+      <div class="name-row"><div class="name-num">67</div><div class="name-content"><div class="name-la">La Ahada illa</div><div class="name-illa">Al-Ahad</div><div class="name-eng">No Unique except THE Unique</div></div></div>
+      <div class="name-row"><div class="name-num">68</div><div class="name-content"><div class="name-la">La Samada illa</div><div class="name-illa">As-Samad</div><div class="name-eng">No Eternal Refuge except THE Eternal Refuge</div></div></div>
+      <div class="name-row"><div class="name-num">69</div><div class="name-content"><div class="name-la">La Qaadira illa</div><div class="name-illa">Al-Qadir</div><div class="name-eng">No Able except THE Able</div></div></div>
+      <div class="name-row"><div class="name-num">70</div><div class="name-content"><div class="name-la">La Muqtadira illa</div><div class="name-illa">Al-Muqtadir</div><div class="name-eng">No Powerful except THE Powerful</div></div></div>
+      <div class="name-row"><div class="name-num">71</div><div class="name-content"><div class="name-la">La Muqaddima illa</div><div class="name-illa">Al-Muqaddim</div><div class="name-eng">No Expediter except THE Expediter</div></div></div>
+      <div class="name-row"><div class="name-num">72</div><div class="name-content"><div class="name-la">La Mu'akhkhira illa</div><div class="name-illa">Al-Mu'akhkhir</div><div class="name-eng">No Delayer except THE Delayer</div></div></div>
+      <div class="name-row"><div class="name-num">73</div><div class="name-content"><div class="name-la">La Awwala illa</div><div class="name-illa">Al-Awwal</div><div class="name-eng">No First except THE First</div></div></div>
+      <div class="name-row"><div class="name-num">74</div><div class="name-content"><div class="name-la">La Aakhira illa</div><div class="name-illa">Al-Akhir</div><div class="name-eng">No Last except THE Last</div></div></div>
+      <div class="name-row"><div class="name-num">75</div><div class="name-content"><div class="name-la">La Zaahira illa</div><div class="name-illa">Az-Zahir</div><div class="name-eng">No Manifest except THE Manifest</div></div></div>
+      <div class="name-row"><div class="name-num">76</div><div class="name-content"><div class="name-la">La Baatina illa</div><div class="name-illa">Al-Batin</div><div class="name-eng">No Hidden except THE Hidden</div></div></div>
+      <div class="name-row"><div class="name-num">77</div><div class="name-content"><div class="name-la">La Waaliya illa</div><div class="name-illa">Al-Wali</div><div class="name-eng">No Governor except THE Governor</div></div></div>
+      <div class="name-row"><div class="name-num">78</div><div class="name-content"><div class="name-la">La Muta'aaliya illa</div><div class="name-illa">Al-Muta'ali</div><div class="name-eng">No Most Exalted except THE Most Exalted</div></div></div>
+      <div class="name-row"><div class="name-num">79</div><div class="name-content"><div class="name-la">La Barran illa</div><div class="name-illa">Al-Barr</div><div class="name-eng">No Source of Goodness except THE Source of Goodness</div></div></div>
+      <div class="name-row"><div class="name-num">80</div><div class="name-content"><div class="name-la">La Tawwaaba illa</div><div class="name-illa">At-Tawwab</div><div class="name-eng">No Acceptor of Repentance except THE Acceptor of Repentance</div></div></div>
+      <div class="name-row"><div class="name-num">81</div><div class="name-content"><div class="name-la">La Muntaqima illa</div><div class="name-illa">Al-Muntaqim</div><div class="name-eng">No Avenger except THE Avenger</div></div></div>
+      <div class="name-row"><div class="name-num">82</div><div class="name-content"><div class="name-la">La Afuwwa illa</div><div class="name-illa">Al-Afuww</div><div class="name-eng">No Pardoner except THE Pardoner</div></div></div>
+      <div class="name-row"><div class="name-num">83</div><div class="name-content"><div class="name-la">La Ra'oofa illa</div><div class="name-illa">Ar-Ra'uf</div><div class="name-eng">No Compassionate except THE Compassionate</div></div></div>
+      <div class="name-row"><div class="name-num">84</div><div class="name-content"><div class="name-la">La Maalika-l-Mulki illa</div><div class="name-illa">Malik-ul-Mulk</div><div class="name-eng">No Owner of Sovereignty except THE Owner of Sovereignty</div></div></div>
+      <div class="name-row"><div class="name-num">85</div><div class="name-content"><div class="name-la">La Dhal Jalaali illa</div><div class="name-illa">Dhul-Jalali-wal-Ikram</div><div class="name-eng">No Lord of Majesty except THE Lord of Majesty & Generosity</div></div></div>
+      <div class="name-row"><div class="name-num">86</div><div class="name-content"><div class="name-la">La Muqsita illa</div><div class="name-illa">Al-Muqsit</div><div class="name-eng">No Equitable except THE Equitable</div></div></div>
+      <div class="name-row"><div class="name-num">87</div><div class="name-content"><div class="name-la">La Jaami'a illa</div><div class="name-illa">Al-Jami</div><div class="name-eng">No Gatherer except THE Gatherer</div></div></div>
+      <div class="name-row"><div class="name-num">88</div><div class="name-content"><div class="name-la">La Ghaniyya illa</div><div class="name-illa">Al-Ghaniyy</div><div class="name-eng">No Self-Sufficient except THE Self-Sufficient</div></div></div>
+      <div class="name-row"><div class="name-num">89</div><div class="name-content"><div class="name-la">La Mughniya illa</div><div class="name-illa">Al-Mughni</div><div class="name-eng">No Enricher except THE Enricher</div></div></div>
+      <div class="name-row"><div class="name-num">90</div><div class="name-content"><div class="name-la">La Maani'a illa</div><div class="name-illa">Al-Mani</div><div class="name-eng">No Withholder except THE Withholder</div></div></div>
+      <div class="name-row"><div class="name-num">91</div><div class="name-content"><div class="name-la">La Daarra illa</div><div class="name-illa">Ad-Darr</div><div class="name-eng">No Distresser except THE Distresser</div></div></div>
+      <div class="name-row"><div class="name-num">92</div><div class="name-content"><div class="name-la">La Naafi'a illa</div><div class="name-illa">An-Nafi</div><div class="name-eng">No Propitious except THE Propitious</div></div></div>
+      <div class="name-row"><div class="name-num">93</div><div class="name-content"><div class="name-la">La Noora illa</div><div class="name-illa">An-Nur</div><div class="name-eng">No Light except THE Light</div></div></div>
+      <div class="name-row"><div class="name-num">94</div><div class="name-content"><div class="name-la">La Haadiya illa</div><div class="name-illa">Al-Hadi</div><div class="name-eng">No Guide except THE Guide</div></div></div>
+      <div class="name-row"><div class="name-num">95</div><div class="name-content"><div class="name-la">La Badee'a illa</div><div class="name-illa">Al-Badi</div><div class="name-eng">No Incomparable except THE Incomparable</div></div></div>
+      <div class="name-row"><div class="name-num">96</div><div class="name-content"><div class="name-la">La Baaqiya illa</div><div class="name-illa">Al-Baqi</div><div class="name-eng">No Everlasting except THE Everlasting</div></div></div>
+      <div class="name-row"><div class="name-num">97</div><div class="name-content"><div class="name-la">La Waaritha illa</div><div class="name-illa">Al-Warith</div><div class="name-eng">No Inheritor except THE Inheritor</div></div></div>
+      <div class="name-row"><div class="name-num">98</div><div class="name-content"><div class="name-la">La Rasheeda illa</div><div class="name-illa">Ar-Rashid</div><div class="name-eng">No Right Guide except THE Right Guide</div></div></div>
+      <div class="name-row"><div class="name-num">99</div><div class="name-content"><div class="name-la">La Saboora illa</div><div class="name-illa">As-Sabur</div><div class="name-eng">No Patient except THE Patient</div></div></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    LA ILAHA ILLALLAH
+  </div>
+
+</div>
+
+</body>
+</html>
