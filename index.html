@@ -521,7 +521,8 @@ function book(){
   const label=p=>p<=6?'Front matter':p<=14&&p>=7&&p<=14&&false?'':p>=8?`Book page ${p-7}`:'Introduction';
   $('#app').innerHTML=`<div class="card"><div class="row"><button class="btn sm sec" id="bp">◀ Prev</button>
     <select id="bsel" style="flex:1;min-width:150px">${Array.from({length:NPG},(_,i)=>i+1).map(p=>`<option value="${p}" ${p===bookPage?'selected':''}>PDF page ${p}${p>=8?' · book p.'+(p-7):p===1?' · cover':' · intro'}</option>`).join('')}</select>
-    <button class="btn sm sec" id="bn">Next ▶</button></div>
+    <button class="btn sm sec" id="bn">Next ▶</button>
+    <a class="btn sm" href="80-percent-of-quranic-words.pdf" download="80-percent-of-quranic-words.pdf" style="text-decoration:none;display:inline-block">⬇ Download PDF</a></div>
     <details class="scope"><summary>Jump to a list</summary><div class="secs">${DB.secs.map(s=>`<a href="#" data-p="${s.p+7}" style="display:block;padding:3px 0;color:var(--pri)">${esc(s.t)} <span class="mute small">p.${s.p}</span></a>`).join('')}</div></details></div>
    <img class="bookimg" id="bimg" alt="Book page" src="pages/p${String(bookPage).padStart(2,'0')}.jpg" onerror="this.alt='Page image not found — keep the pages folder next to index.html'">`;
   const set=p=>{bookPage=Math.max(1,Math.min(NPG,p));book()};
