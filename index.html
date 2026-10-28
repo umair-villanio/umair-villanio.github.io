@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qur'anic Words Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f3ea;--card:#fffdf8;--ink:#1f2933;--mute:#6b7280;--line:#e6dfcc;--pri:#1b7a78;--pri2:#e3f2f1;--gold:#b08d3c;--ok:#2f855a;--okbg:#e3f5ea;--bad:#c0392b;--badbg:#fbe7e4;--shadow:0 2px 10px rgba(60,50,20,.08);--ar:'Amiri','Scheherazade New','Traditional Arabic','Noto Naskh Arabic',serif;--arsize:1}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#121816;--card:#1a2321;--ink:#e8ece9;--mute:#9aa7a2;--line:#2b3834;--pri:#4fbdb8;--pri2:#173331;--gold:#d4b25f;--ok:#6fd49b;--okbg:#17332486;--bad:#ff8f84;--badbg:#3a1f1c;--shadow:none}}
+:root[data-theme=dark]{--bg:#121816;--card:#1a2321;--ink:#e8ece9;--mute:#9aa7a2;--line:#2b3834;--pri:#4fbdb8;--pri2:#173331;--gold:#d4b25f;--ok:#6fd49b;--okbg:#173324;--bad:#ff8f84;--badbg:#3a1f1c;--shadow:none}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+.ar{font-family:var(--ar);direction:rtl;unicode-bidi:isolate;line-height:1.7}
+header{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+.bar{max-width:1000px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;gap:10px}
+.brand{font-weight:700;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.brand .ar{font-size:22px;color:var(--gold)}
+nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav button{background:none;border:0;padding:8px 12px;border-radius:999px;color:var(--mute);font-weight:600;white-space:nowrap}
+nav button.on{background:var(--pri2);color:var(--pri)}
+nav button:hover{color:var(--ink)}
+main{max-width:1000px;margin:0 auto;padding:16px}
+h1,h2,h3{margin:.2em 0 .5em}
+h2{font-size:20px}h3{font-size:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow);margin-bottom:14px}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.btn{background:var(--pri);color:#fff;border:0;border-radius:10px;padding:10px 16px;font-weight:600}
+.btn:hover{filter:brightness(1.07)}
+.btn.sec{background:var(--pri2);color:var(--pri)}
+.btn.ghost{background:none;border:1px solid var(--line);color:var(--ink)}
+.btn.bad{background:var(--bad);color:#fff}
+.btn.ok{background:var(--ok);color:#fff}
+.btn.sm{padding:5px 10px;font-size:14px;border-radius:8px}
+.btn:disabled{opacity:.45;cursor:default}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.sp{flex:1}
+.mute{color:var(--mute)}.small{font-size:13px}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600;color:var(--mute)}
+.chip.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+input[type=text],input[type=search],input[type=number],select{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 12px;width:100%}
+input[type=range]{width:100%;accent-color:var(--pri)}
+label.f{display:block;font-size:13px;font-weight:600;color:var(--mute);margin:10px 0 4px}
+.stat{text-align:center}.stat b{display:block;font-size:26px;color:var(--pri)}.stat span{font-size:13px;color:var(--mute)}
+.bar2{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar2>i{display:block;height:100%;background:var(--pri);border-radius:99px;transition:width .3s}
+/* flashcard */
+.fc{margin:10px auto;max-width:640px}
+.fc-in{cursor:pointer}
+.face{position:relative;min-height:340px;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:44px 20px 52px;text-align:center;animation:pop .25s}
+.face.back{display:none}
+.fc.flip .face:not(.back){display:none}
+.fc.flip .face.back{display:flex}
+@keyframes pop{from{opacity:.2;transform:scale(.98)}to{opacity:1;transform:none}}
+.big-ar{font-size:calc(54px*var(--arsize));line-height:1.5}
+.big-en{font-size:28px;font-weight:600}
+.tag{font-size:12px;color:var(--mute);position:absolute;top:12px;left:16px}
+.tagr{font-size:12px;color:var(--gold);position:absolute;top:12px;right:16px}
+.forms{border-collapse:collapse;margin-top:10px;width:100%;max-width:520px}
+.forms td{border-top:1px solid var(--line);padding:5px 8px}
+.forms td:first-child{color:var(--mute);font-size:13px;text-align:left;white-space:nowrap}
+.forms td.ar{font-size:calc(26px*var(--arsize));text-align:right}
+.rate{display:flex;gap:10px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.rate .btn{min-width:110px}
+/* lists */
+.sec-h{font-weight:700;display:flex;gap:8px;align-items:center;cursor:pointer;padding:10px 4px;list-style:none}
+.sec-h::-webkit-details-marker{display:none}
+.item{display:grid;grid-template-columns:28px 1fr auto auto;gap:10px;align-items:center;padding:7px 4px;border-top:1px solid var(--line);cursor:pointer}
+.item:hover{background:var(--pri2)}
+.item .ar{font-size:calc(24px*var(--arsize));text-align:right}
+.star{background:none;border:0;font-size:18px;color:var(--line);padding:0}
+.star.on{color:var(--gold)}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--line);display:inline-block}
+.dot.k{background:var(--ok)}.dot.l{background:var(--gold)}
+/* quiz */
+.opt{display:block;width:100%;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;font-size:18px}
+.opt.ar{text-align:center;font-size:calc(30px*var(--arsize))}
+.opt:hover:not(:disabled){border-color:var(--pri)}
+.opt.right{border-color:var(--ok);background:var(--okbg)}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+.q-ar{font-size:calc(64px*var(--arsize));text-align:center;margin:8px 0}
+.q-en{font-size:28px;text-align:center;font-weight:600;margin:14px 0}
+.ring{--p:0;width:130px;height:130px;border-radius:50%;background:conic-gradient(var(--pri) calc(var(--p)*1%),var(--line) 0);display:grid;place-items:center;margin:auto}
+.ring>div{width:104px;height:104px;border-radius:50%;background:var(--card);display:grid;place-items:center;text-align:center;font-weight:700;font-size:22px}
+.ring small{display:block;font-size:11px;color:var(--mute);font-weight:500}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.tile{min-height:70px;border:2px solid var(--line);background:var(--card);border-radius:12px;padding:8px;display:grid;place-items:center;text-align:center}
+.tile.ar{font-size:calc(26px*var(--arsize))}
+.tile.sel{border-color:var(--pri);background:var(--pri2)}
+.tile.done{visibility:hidden}
+.tile.no{border-color:var(--bad);background:var(--badbg)}
+dialog{border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);max-width:560px;width:calc(100% - 28px);padding:18px;box-shadow:0 10px 40px rgba(0,0,0,.3)}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+.bookimg{max-width:100%;border:1px solid var(--line);border-radius:10px;display:block;margin:0 auto;box-shadow:var(--shadow)}
+details.scope summary{cursor:pointer;color:var(--pri);font-weight:600;margin-top:8px}
+.secs{max-height:220px;overflow:auto;border:1px solid var(--line);border-radius:10px;padding:6px 10px;margin-top:6px}
+.secs label{display:flex;gap:8px;padding:3px 0;font-size:14px}
+@media(max-width:640px){.brand span{display:none}main{padding:12px}.big-ar{font-size:calc(44px*var(--arsize))}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+  <div class="brand"><span class="ar">قرآن</span><span>Qur'anic Words</span></div>
+  <nav id="nav"></nav>
+</div></header>
+<main id="app"></main>
+<dialog id="dlg"></dialog>
+<script>
+const DB = {"secs":[{"id":0,"t":"This, that...!","p":1,"g":"Particles & Pronouns"},{"id":1,"t":"No, No!!!","p":1,"g":"Particles & Pronouns"},{"id":2,"t":"Whose? (pronoun suffixes)","p":2,"g":"Particles & Pronouns"},{"id":3,"t":"Who?","p":2,"g":"Particles & Pronouns"},{"id":4,"t":"Where?","p":3,"g":"Particles & Pronouns"},{"id":5,"t":"Questions!?","p":3,"g":"Particles & Pronouns"},{"id":6,"t":"Miscellaneous","p":4,"g":"Particles & Pronouns"},{"id":7,"t":"When?","p":4,"g":"Particles & Pronouns"},{"id":8,"t":"Prepositions + مَا","p":5,"g":"Particles & Pronouns"},{"id":9,"t":"Prepositions","p":5,"g":"Particles & Pronouns"},{"id":10,"t":"Prefix for verb,...","p":6,"g":"Particles & Pronouns"},{"id":11,"t":"Inna","p":6,"g":"Particles & Pronouns"},{"id":12,"t":"Some attributes (of Allah and others)","p":7,"g":"Nouns & Attributes"},{"id":13,"t":"Noun of Superiority (اسم تفضيل)","p":8,"g":"Nouns & Attributes"},{"id":14,"t":"Some attributes...","p":8,"g":"Nouns & Attributes"},{"id":15,"t":"Prophets and Allah's Signs","p":9,"g":"Nouns & Attributes"},{"id":16,"t":"Last day","p":10,"g":"Nouns & Attributes"},{"id":17,"t":"Dīn","p":11,"g":"Nouns & Attributes"},{"id":18,"t":"Faith","p":11,"g":"Nouns & Attributes"},{"id":19,"t":"Deeds","p":12,"g":"Nouns & Attributes"},{"id":20,"t":"Blessings","p":12,"g":"Nouns & Attributes"},{"id":21,"t":"Relatives","p":13,"g":"Nouns & Attributes"},{"id":22,"t":"Self (body parts)","p":13,"g":"Nouns & Attributes"},{"id":23,"t":"World","p":14,"g":"Nouns & Attributes"},{"id":24,"t":"People","p":14,"g":"Nouns & Attributes"},{"id":25,"t":"Verbs: Form I — فَعَلَ يَفْعَلُ (fatha)","p":15,"g":"Verbs"},{"id":26,"t":"Verbs: Form I — فَعَلَ يَفْعُلُ (damma)","p":16,"g":"Verbs"},{"id":27,"t":"Verbs: Form I — فَعَلَ يَفْعُلُ (damma, cont.)","p":17,"g":"Verbs"},{"id":28,"t":"Verbs: Form I — فَعَلَ يَفْعِلُ (kasra)","p":18,"g":"Verbs"},{"id":29,"t":"Verbs: Form I — فَعِلَ يَفْعَلُ","p":19,"g":"Verbs"},{"id":30,"t":"Verbs: doubled root — مُضَاعَف (last two letters same)","p":20,"g":"Verbs"},{"id":31,"t":"Verbs: first letter و or ي — مِثَال","p":21,"g":"Verbs"},{"id":32,"t":"Verbs: second letter و or ي — أَجْوَف","p":22,"g":"Verbs"},{"id":33,"t":"Verbs: last letter و or ي — نَاقِص","p":23,"g":"Verbs"},{"id":34,"t":"Verbs: hamzah in the root — مَهْمُوز","p":24,"g":"Verbs"},{"id":35,"t":"Verbs: Form II — فَعَّلَ يُفَعِّلُ","p":25,"g":"Verbs"},{"id":36,"t":"Verbs: Form II (cont.)","p":26,"g":"Verbs"},{"id":37,"t":"Verbs: Form III — فَاعَلَ يُفَاعِلُ","p":26,"g":"Verbs"},{"id":38,"t":"Verbs: Form IV — أَفْعَلَ يُفْعِلُ","p":27,"g":"Verbs"},{"id":39,"t":"Verbs: Form IV (cont.)","p":28,"g":"Verbs"},{"id":40,"t":"Verbs: Form IV (cont.)","p":29,"g":"Verbs"},{"id":41,"t":"Verbs: Form IV with weak letters (cont.)","p":30,"g":"Verbs"},{"id":42,"t":"Verbs: Form V — تَفَعَّلَ يَتَفَعَّلُ","p":31,"g":"Verbs"},{"id":43,"t":"Verbs: Form VI — تَفَاعَلَ يَتَفَاعَلُ","p":31,"g":"Verbs"},{"id":44,"t":"Verbs: Form VIII — اِفْتَعَلَ يَفْتَعِلُ","p":32,"g":"Verbs"},{"id":45,"t":"Verbs: Form VII — اِنْفَعَلَ يَنْفَعِلُ","p":32,"g":"Verbs"},{"id":46,"t":"Verbs: Form IX — اِفْعَلَّ يَفْعَلُّ","p":33,"g":"Verbs"},{"id":47,"t":"Verbs: Form X — اِسْتَفْعَلَ يَسْتَفْعِلُ","p":33,"g":"Verbs"},{"id":48,"t":"Verb + preposition (changes the meaning)","p":34,"g":"Verb Grammar"},{"id":49,"t":"Conjugation — masculine (past ~ imperfect)","p":35,"g":"Verb Grammar"},{"id":50,"t":"Conjugation — feminine (past ~ imperfect)","p":37,"g":"Verb Grammar"},{"id":51,"t":"Imperative & negative — masculine (past ~ command)","p":36,"g":"Verb Grammar"},{"id":52,"t":"Imperative & negative — feminine","p":38,"g":"Verb Grammar"}],"cards":[{"id":0,"s":0,"p":1,"en":"this (mg)","ar":"هَٰذَا","n":0,"k":"w","w":224},{"id":1,"s":0,"p":1,"en":"that (mg)","ar":"ذَٰلِكَ","n":0,"k":"w","w":224},{"id":2,"s":0,"p":1,"en":"this (fg)","ar":"هَٰذِهِ","n":0,"k":"w","w":224},{"id":3,"s":0,"p":1,"en":"that (fg)","ar":"تِلْكَ","n":0,"k":"w","w":224},{"id":4,"s":0,"p":1,"en":"these (mg/fg)","ar":"هَٰؤُلَاءِ","n":0,"k":"w","w":224},{"id":5,"s":0,"p":1,"en":"those (mg/fg)","ar":"أُولَٰئِكَ","n":0,"k":"w","w":224},{"id":6,"s":0,"p":1,"en":"he who (mg)","ar":"الَّذِي","n":0,"k":"w","w":224},{"id":7,"s":0,"p":1,"en":"she who (fg)","ar":"الَّتِي","n":0,"k":"w","w":224},{"id":8,"s":0,"p":1,"en":"those who (mg)","ar":"الَّذِينَ","n":0,"k":"w","w":224},{"id":9,"s":0,"p":1,"en":"these (for br. pl)","ar":"هَٰذِهِ","n":0,"k":"w","w":224},{"id":10,"s":0,"p":1,"en":"those (for br. pl)","ar":"تِلْكَ","n":0,"k":"w","w":224},{"id":11,"s":0,"p":1,"en":"those who (for br. pl)","ar":"الَّتِي","n":0,"k":"w","w":224},{"id":12,"s":1,"p":1,"en":"(There is) no god","ar":"لَا إِلَٰهَ","n":0,"k":"w","w":224},{"id":13,"s":1,"p":1,"en":"except Allah","ar":"إِلَّا اللهُ","n":0,"k":"w","w":224},{"id":14,"s":1,"p":1,"en":"never, certainly not","ar":"كَلَّا","n":0,"k":"w","w":224},{"id":15,"s":1,"p":1,"en":"not (for future)","ar":"لَنْ","n":0,"k":"w","w":224},{"id":16,"s":1,"p":1,"en":"not (for past)","ar":"لَمْ","n":0,"k":"w","w":224},{"id":17,"s":1,"p":1,"en":"not","ar":"مَا","n":0,"k":"w","w":224},{"id":18,"s":1,"p":1,"en":"not (fg)","ar":"لَيْسَ (لَيْسَتْ)","n":0,"k":"w","w":224},{"id":19,"s":1,"p":1,"en":"yes, indeed","ar":"بَلَىٰ","n":0,"k":"w","w":224},{"id":20,"s":1,"p":1,"en":"not, other than","ar":"غَيْر","n":0,"k":"w","w":224},{"id":21,"s":1,"p":1,"en":"besides; less than","ar":"دُونَ","n":0,"k":"w","w":224},{"id":22,"s":1,"p":1,"en":"except; unless; if not","ar":"إِلَّا","n":0,"k":"w","w":224},{"id":23,"s":1,"p":1,"en":"yes","ar":"نَعَمْ","n":0,"k":"w","w":224},{"id":24,"s":2,"p":2,"en":"his (mg)","ar":"...هُ","n":0,"k":"w","w":224},{"id":25,"s":2,"p":2,"en":"their (mg)","ar":"...هُمْ","n":0,"k":"w","w":224},{"id":26,"s":2,"p":2,"en":"your (mg)","ar":"...كَ","n":0,"k":"w","w":224},{"id":27,"s":2,"p":2,"en":"your (mg pl)","ar":"...كُمْ","n":0,"k":"w","w":224},{"id":28,"s":2,"p":2,"en":"my","ar":"...يْ (نِي)","n":0,"k":"w","w":224},{"id":29,"s":2,"p":2,"en":"us","ar":"...نَا","n":0,"k":"w","w":224},{"id":30,"s":2,"p":2,"en":"her (fg)","ar":"...هَا","n":0,"k":"w","w":224},{"id":31,"s":2,"p":2,"en":"their (fg)","ar":"...هُنَّ","n":0,"k":"w","w":224},{"id":32,"s":2,"p":2,"en":"your (fg)","ar":"...كِ","n":0,"k":"w","w":224},{"id":33,"s":2,"p":2,"en":"their (for br. pl)","ar":"...هَا","n":0,"k":"w","w":224},{"id":34,"s":2,"p":2,"en":"their (dl)","ar":"...هُمَا","n":0,"k":"w","w":224},{"id":35,"s":2,"p":2,"en":"your (dl)","ar":"...كُمَا","n":0,"k":"w","w":224},{"id":36,"s":3,"p":2,"en":"he (mg)","ar":"هُوَ","n":0,"k":"w","w":224},{"id":37,"s":3,"p":2,"en":"them (mg)","ar":"هُمْ","n":0,"k":"w","w":224},{"id":38,"s":3,"p":2,"en":"you (mg)","ar":"أَنْتَ","n":0,"k":"w","w":224},{"id":39,"s":3,"p":2,"en":"you all (mg)","ar":"أَنْتُمْ","n":0,"k":"w","w":224},{"id":40,"s":3,"p":2,"en":"i (mg/fg)","ar":"أَنَا","n":0,"k":"w","w":224},{"id":41,"s":3,"p":2,"en":"we (mg/fg)","ar":"نَحْنُ","n":0,"k":"w","w":224},{"id":42,"s":3,"p":2,"en":"she (fg)","ar":"هِيَ","n":0,"k":"w","w":224},{"id":43,"s":3,"p":2,"en":"they (fg)","ar":"هُنَّ","n":0,"k":"w","w":224},{"id":44,"s":3,"p":2,"en":"you (fg)","ar":"أَنْتِ","n":0,"k":"w","w":224},{"id":45,"s":3,"p":2,"en":"they (for br. pl)","ar":"هِيَ","n":0,"k":"w","w":224},{"id":46,"s":3,"p":2,"en":"those two (dl)","ar":"هُمَا","n":0,"k":"w","w":224},{"id":47,"s":3,"p":2,"en":"you two (dl)","ar":"أَنْتُمَا","n":0,"k":"w","w":224},{"id":48,"s":4,"p":3,"en":"above, up","ar":"فَوْقَ","n":0,"k":"w","w":224},{"id":49,"s":4,"p":3,"en":"under","ar":"تَحْتَ","n":0,"k":"w","w":224},{"id":50,"s":4,"p":3,"en":"in front of","ar":"بَيْنَ أَيْدِي، بَيْنَ يَدَيْ","n":0,"k":"w","w":224},{"id":51,"s":4,"p":3,"en":"back, after","ar":"خَلْفَ","n":0,"k":"w","w":224},{"id":52,"s":4,"p":3,"en":"in front of","ar":"أَمَامَ","n":0,"k":"w","w":224},{"id":53,"s":4,"p":3,"en":"behind","ar":"وَرَاءَ","n":0,"k":"w","w":224},{"id":54,"s":4,"p":3,"en":"right; oath","ar":"يَمِين (أَيْمَان pl)","n":0,"k":"w","w":224},{"id":55,"s":4,"p":3,"en":"left","ar":"شِمَال (شَمَائِل pl)","n":0,"k":"w","w":224},{"id":56,"s":4,"p":3,"en":"between","ar":"بَيْنَ","n":0,"k":"w","w":224},{"id":57,"s":4,"p":3,"en":"around","ar":"حَوْلَ","n":0,"k":"w","w":224},{"id":58,"s":4,"p":3,"en":"wherever","ar":"حَيْثُ","n":0,"k":"w","w":224},{"id":59,"s":4,"p":3,"en":"wherever","ar":"أَيْنَمَا","n":0,"k":"w","w":224},{"id":60,"s":5,"p":3,"en":"what?, that which","ar":"مَا","n":0,"k":"w","w":224},{"id":61,"s":5,"p":3,"en":"who?, the one who","ar":"مَنْ","n":0,"k":"w","w":224},{"id":62,"s":5,"p":3,"en":"when?, the time when","ar":"مَتَىٰ","n":0,"k":"w","w":224},{"id":63,"s":5,"p":3,"en":"where?","ar":"أَيْنَ","n":0,"k":"w","w":224},{"id":64,"s":5,"p":3,"en":"how?","ar":"كَيْفَ","n":0,"k":"w","w":224},{"id":65,"s":5,"p":3,"en":"how many?","ar":"كَمْ","n":0,"k":"w","w":224},{"id":66,"s":5,"p":3,"en":"which?","ar":"أَيّ","n":0,"k":"w","w":224},{"id":67,"s":5,"p":3,"en":"where from?, why?","ar":"أَنَّىٰ","n":0,"k":"w","w":224},{"id":68,"s":5,"p":3,"en":"Is? Am? Are? Do? Have?","ar":"أَ، هَلْ","n":0,"k":"w","w":224},{"id":69,"s":5,"p":3,"en":"what?","ar":"مَاذَا","n":0,"k":"w","w":224},{"id":70,"s":5,"p":3,"en":"why?","ar":"لِمَ، لِمَاذَا","n":0,"k":"w","w":224},{"id":71,"s":5,"p":3,"en":"if not; why not","ar":"لَوْلَا","n":0,"k":"w","w":224},{"id":72,"s":6,"p":4,"en":"endowed with; owner of (mg)","ar":"ذُو، ذَا، ذِي","n":0,"k":"w","w":224},{"id":73,"s":6,"p":4,"en":"endowed with; owner of (fg)","ar":"ذَاتُ","n":0,"k":"w","w":224},{"id":74,"s":6,"p":4,"en":"people of; owners of","ar":"أُولُو، أُولِي","n":0,"k":"w","w":224},{"id":75,"s":6,"p":4,"en":"people of; relative","ar":"أَهْل","n":0,"k":"w","w":224},{"id":76,"s":6,"p":4,"en":"family, relatives, people","ar":"آل","n":0,"k":"w","w":224},{"id":77,"s":6,"p":4,"en":"lo!; do not?, will not?","ar":"أَلَا","n":0,"k":"w","w":224},{"id":78,"s":6,"p":4,"en":"what an excellent...","ar":"نِعْمَ","n":0,"k":"w","w":224},{"id":79,"s":6,"p":4,"en":"what an evil...","ar":"بِئْسَ","n":0,"k":"w","w":224},{"id":80,"s":6,"p":4,"en":"evil is that which","ar":"بِئْسَمَا","n":0,"k":"w","w":224},{"id":81,"s":6,"p":4,"en":"something similar","ar":"مِثْل","n":0,"k":"w","w":224},{"id":82,"s":6,"p":4,"en":"similitude","ar":"مَثَل (أَمْثَال)","n":0,"k":"w","w":224},{"id":83,"s":6,"p":4,"en":"than the one who; from those who","ar":"مِمَّنْ (مِنْ+مَنْ)","n":0,"k":"w","w":224},{"id":84,"s":7,"p":4,"en":"before","ar":"قَبْلَ","n":0,"k":"w","w":224},{"id":85,"s":7,"p":4,"en":"after","ar":"بَعْدَ","n":0,"k":"w","w":224},{"id":86,"s":7,"p":4,"en":"time, period; at the time of","ar":"حِينَ","n":0,"k":"w","w":224},{"id":87,"s":7,"p":4,"en":"when (for past)","ar":"إِذْ","n":0,"k":"w","w":224},{"id":88,"s":7,"p":4,"en":"when (for future)","ar":"إِذَا","n":0,"k":"w","w":224},{"id":89,"s":7,"p":4,"en":"then","ar":"ثُمَّ","n":0,"k":"w","w":224},{"id":90,"s":7,"p":4,"en":"then, thus, therefore","ar":"فَ","n":0,"k":"w","w":224},{"id":91,"s":7,"p":4,"en":"nay, -- rather, but, however","ar":"بَلْ","n":0,"k":"w","w":224},{"id":92,"s":7,"p":4,"en":"near, with","ar":"عِنْدَ، لَدَىٰ، لَدُنْ","n":0,"k":"w","w":224},{"id":93,"s":7,"p":4,"en":"nothing --- but","ar":"إِنْ ... إِلَّا","n":0,"k":"w","w":224},{"id":94,"s":7,"p":4,"en":"nothing --- but","ar":"مَا ... إِلَّا","n":0,"k":"w","w":224},{"id":95,"s":7,"p":4,"en":"that...not; so as not to","ar":"أَلَّا (أَنْ+لَا)","n":0,"k":"w","w":224},{"id":96,"s":8,"p":5,"en":"with what, because","ar":"بِمَا","n":0,"k":"w","w":224},{"id":97,"s":8,"p":5,"en":"about what","ar":"عَمَّا","n":0,"k":"w","w":224},{"id":98,"s":8,"p":5,"en":"in what","ar":"فِيمَا","n":0,"k":"w","w":224},{"id":99,"s":8,"p":5,"en":"as, just as","ar":"كَمَا","n":0,"k":"w","w":224},{"id":100,"s":8,"p":5,"en":"for what; for that which","ar":"لِمَا","n":0,"k":"w","w":224},{"id":101,"s":8,"p":5,"en":"out of what","ar":"مِمَّا","n":0,"k":"w","w":224},{"id":102,"s":8,"p":5,"en":"as to, as for","ar":"أَمَّا","n":0,"k":"w","w":224},{"id":103,"s":8,"p":5,"en":"if; either/or","ar":"إِمَّا","n":0,"k":"w","w":224},{"id":104,"s":8,"p":5,"en":"that","ar":"أَنَّمَا","n":0,"k":"w","w":224},{"id":105,"s":8,"p":5,"en":"verily; is but","ar":"إِنَّمَا","n":0,"k":"w","w":224},{"id":106,"s":8,"p":5,"en":"as if","ar":"كَأَنَّمَا","n":0,"k":"w","w":224},{"id":107,"s":8,"p":5,"en":"whenever","ar":"كُلَّمَا","n":0,"k":"w","w":224},{"id":108,"s":9,"p":5,"en":"with, in, from,...","ar":"بِ","n":0,"k":"w","w":224},{"id":109,"s":9,"p":5,"en":"about","ar":"عَنْ","n":0,"k":"w","w":224},{"id":110,"s":9,"p":5,"en":"in","ar":"فِي","n":0,"k":"w","w":224},{"id":111,"s":9,"p":5,"en":"as, like","ar":"كَ","n":0,"k":"w","w":224},{"id":112,"s":9,"p":5,"en":"for","ar":"لِ، لَ","n":0,"k":"w","w":224},{"id":113,"s":9,"p":5,"en":"from","ar":"مِنْ","n":0,"k":"w","w":224},{"id":114,"s":9,"p":5,"en":"towards","ar":"إِلَىٰ","n":0,"k":"w","w":224},{"id":115,"s":9,"p":5,"en":"by (of oath)","ar":"تَ","n":0,"k":"w","w":224},{"id":116,"s":9,"p":5,"en":"until","ar":"حَتَّىٰ","n":0,"k":"w","w":224},{"id":117,"s":9,"p":5,"en":"on","ar":"عَلَىٰ","n":0,"k":"w","w":224},{"id":118,"s":9,"p":5,"en":"with","ar":"مَعَ","n":0,"k":"w","w":224},{"id":119,"s":9,"p":5,"en":"and; by (of oath)","ar":"وَ","n":0,"k":"w","w":224},{"id":120,"s":10,"p":6,"en":"has (with ماضي); surely (with مضارع)","ar":"قَدْ (+فعل)","n":0,"k":"w","w":224},{"id":121,"s":10,"p":6,"en":"will (for near future)","ar":"سَ (+فعل)","n":0,"k":"w","w":224},{"id":122,"s":10,"p":6,"en":"will (for future)","ar":"سَوْفَ (+فعل)","n":0,"k":"w","w":224},{"id":123,"s":10,"p":6,"en":"will surely","ar":"لَ+فعل+نَّ","n":0,"k":"w","w":224},{"id":124,"s":10,"p":6,"en":"indeed","ar":"لَقَدْ (+فعل)","n":0,"k":"w","w":224},{"id":125,"s":10,"p":6,"en":"indeed, surely","ar":"لَ","n":0,"k":"w","w":224},{"id":126,"s":10,"p":6,"en":"let sb do (imperative)","ar":"لِ، لْ (أمر)","n":0,"k":"w","w":224},{"id":127,"s":10,"p":6,"en":"the","ar":"الْ","n":0,"k":"w","w":224},{"id":128,"s":10,"p":6,"en":"or?","ar":"أَمْ","n":0,"k":"w","w":224},{"id":129,"s":10,"p":6,"en":"or","ar":"أَوْ","n":0,"k":"w","w":224},{"id":130,"s":10,"p":6,"en":"some of","ar":"بَعْض","n":0,"k":"w","w":224},{"id":131,"s":10,"p":6,"en":"everyone; all","ar":"كُلّ","n":0,"k":"w","w":224},{"id":132,"s":11,"p":6,"en":"verily, truly","ar":"إِنَّ","n":0,"k":"w","w":224},{"id":133,"s":11,"p":6,"en":"that","ar":"أَنَّ","n":0,"k":"w","w":224},{"id":134,"s":11,"p":6,"en":"as if","ar":"كَأَنَّ","n":0,"k":"w","w":224},{"id":135,"s":11,"p":6,"en":"but, however","ar":"لَكِنَّ (لَكِنْ)","n":0,"k":"w","w":224},{"id":136,"s":11,"p":6,"en":"perhaps, may be","ar":"لَعَلَّ","n":0,"k":"w","w":224},{"id":137,"s":11,"p":6,"en":"that","ar":"أَنْ","n":0,"k":"w","w":224},{"id":138,"s":11,"p":6,"en":"if","ar":"إِنْ","n":0,"k":"w","w":224},{"id":139,"s":11,"p":6,"en":"alone","ar":"إِيَّا","n":0,"k":"w","w":224},{"id":140,"s":11,"p":6,"en":"possibly","ar":"عَسَىٰ","n":0,"k":"w","w":224},{"id":141,"s":11,"p":6,"en":"when","ar":"لَمَّا","n":0,"k":"w","w":224},{"id":142,"s":11,"p":6,"en":"if","ar":"لَوْ","n":0,"k":"w","w":224},{"id":143,"s":11,"p":6,"en":"O!","ar":"يَا، يَاأَيُّهَا","n":0,"k":"w","w":224},{"id":144,"s":12,"p":7,"en":"knowing, ever aware","ar":"خَبِير","n":45,"k":"w","w":45},{"id":145,"s":12,"p":7,"en":"Lord; Sustainer","ar":"رَبّ","n":970,"k":"w","w":970},{"id":146,"s":12,"p":7,"en":"Compassionate","ar":"رَحْمَٰن","n":57,"k":"w","w":57},{"id":147,"s":12,"p":7,"en":"peace","ar":"سَلَام","n":42,"k":"w","w":42},{"id":148,"s":12,"p":7,"en":"one who listens","ar":"سَمِيع","n":47,"k":"w","w":47},{"id":149,"s":12,"p":7,"en":"grateful","ar":"شَكُور","n":24,"k":"w","w":24},{"id":150,"s":12,"p":7,"en":"mighty","ar":"عَزِيز","n":99,"k":"w","w":99},{"id":151,"s":12,"p":7,"en":"most forgiving","ar":"غَفُور","n":91,"k":"w","w":91},{"id":152,"s":12,"p":7,"en":"All-powerful","ar":"قَدِير","n":45,"k":"w","w":45},{"id":153,"s":12,"p":7,"en":"warner","ar":"نَذِير","n":44,"k":"w","w":44},{"id":154,"s":12,"p":7,"en":"strong helper","ar":"نَصِير","n":24,"k":"w","w":24},{"id":155,"s":12,"p":7,"en":"one who takes care of a thing for another","ar":"وَكِيل","n":24,"k":"w","w":24},{"id":156,"s":12,"p":7,"en":"first (fg: أُولَىٰ)","ar":"أَوَّل (أُولَىٰ)","n":82,"k":"w","w":82},{"id":157,"s":12,"p":7,"en":"last (fg: آخِرَة)","ar":"آخِر (آخِرَة)","n":40,"k":"w","w":40},{"id":158,"s":12,"p":7,"en":"[other] (fg: أُخْرَىٰ)","ar":"آخَر (أُخْرَىٰ)","n":65,"k":"w","w":65},{"id":159,"s":12,"p":7,"en":"trustworthy","ar":"أَمِين","n":14,"k":"w","w":14},{"id":160,"s":12,"p":7,"en":"one who sees clearly","ar":"بَصِير","n":53,"k":"w","w":53},{"id":161,"s":12,"p":7,"en":"far","ar":"بَعِيد","n":25,"k":"w","w":25},{"id":162,"s":12,"p":7,"en":"most forgiving","ar":"تَوَّاب","n":11,"k":"w","w":11},{"id":163,"s":12,"p":7,"en":"protector","ar":"حَفِيظ","n":26,"k":"w","w":26},{"id":164,"s":12,"p":7,"en":"wise","ar":"حَكِيم","n":97,"k":"w","w":97},{"id":165,"s":12,"p":7,"en":"forbearing","ar":"حَلِيم","n":15,"k":"w","w":15},{"id":166,"s":12,"p":7,"en":"praiseworthy","ar":"حَمِيد","n":17,"k":"w","w":17},{"id":167,"s":12,"p":7,"en":"warm (friend); boiling water","ar":"حَمِيم","n":20,"k":"w","w":20},{"id":168,"s":13,"p":8,"en":"most severe","ar":"أَشَدّ","n":31,"k":"w","w":31},{"id":169,"s":13,"p":8,"en":"higher, superior","ar":"أَعْلَىٰ","n":11,"k":"w","w":11},{"id":170,"s":13,"p":8,"en":"better-knowing, more informed","ar":"أَعْلَم","n":49,"k":"w","w":49},{"id":171,"s":13,"p":8,"en":"nearer","ar":"أَقْرَب","n":19,"k":"w","w":19},{"id":172,"s":13,"p":8,"en":"bigger","ar":"أَكْبَر","n":23,"k":"w","w":23},{"id":173,"s":13,"p":8,"en":"more; most","ar":"أَكْثَر","n":80,"k":"w","w":80},{"id":174,"s":13,"p":8,"en":"better","ar":"أَحْسَن","n":36,"k":"w","w":36},{"id":175,"s":13,"p":8,"en":"more entitled; more worthy","ar":"أَحَقّ","n":10,"k":"w","w":10},{"id":176,"s":13,"p":8,"en":"nearer; more likely; lower; less","ar":"أَدْنَىٰ","n":12,"k":"w","w":12},{"id":177,"s":13,"p":8,"en":"more unjust","ar":"أَظْلَم","n":16,"k":"w","w":16},{"id":178,"s":13,"p":8,"en":"better guided","ar":"أَهْدَىٰ","n":7,"k":"w","w":7},{"id":179,"s":13,"p":8,"en":"nearer, closer; woe","ar":"أَوْلَىٰ","n":11,"k":"w","w":11},{"id":180,"s":14,"p":8,"en":"severe; strong","ar":"شَدِيد","n":52,"k":"w","w":52},{"id":181,"s":14,"p":8,"en":"high, exalted","ar":"عَلِيّ","n":11,"k":"w","w":11},{"id":182,"s":14,"p":8,"en":"knower","ar":"عَلِيم","n":162,"k":"w","w":162},{"id":183,"s":14,"p":8,"en":"near","ar":"قَرِيب","n":26,"k":"w","w":26},{"id":184,"s":14,"p":8,"en":"big (fg: كَبِيرَة)","ar":"كَبِير (كَبِيرَة)","n":44,"k":"w","w":44},{"id":185,"s":14,"p":8,"en":"plenty; much (fg: كَثِيرَة)","ar":"كَثِير (كَثِيرَة)","n":74,"k":"w","w":74},{"id":186,"s":14,"p":8,"en":"quick; swift; fast","ar":"سَرِيع","n":10,"k":"w","w":10},{"id":187,"s":14,"p":8,"en":"merciful","ar":"رَحِيم","n":182,"k":"w","w":182},{"id":188,"s":14,"p":8,"en":"supreme","ar":"عَظِيم","n":107,"k":"w","w":107},{"id":189,"s":14,"p":8,"en":"little (fg: قَلِيلَة)","ar":"قَلِيل (قَلِيلَة)","n":71,"k":"w","w":71},{"id":190,"s":14,"p":8,"en":"noble; honourable; generous","ar":"كَرِيم","n":27,"k":"w","w":27},{"id":191,"s":14,"p":8,"en":"subtle","ar":"لَطِيف","n":7,"k":"w","w":7},{"id":192,"s":15,"p":9,"en":"Messenger (pl: رُسُل)","ar":"رَسُول (رُسُل)","n":332,"k":"w","w":332},{"id":193,"s":15,"p":9,"en":"Prophet","ar":"نَبِيّ","n":75,"k":"w","w":75},{"id":194,"s":15,"p":9,"en":"Prophets","ar":"نَبِيُّون، نَبِيِّين، أَنْبِيَاء","n":0,"k":"w","w":0},{"id":195,"s":15,"p":9,"en":"Adam, Nuh (Noah), Ibrahim (Abraham)","ar":"آدَم، نُوح، إِبْرَاهِيم","n":137,"k":"w","w":137},{"id":196,"s":15,"p":9,"en":"Lut (Lot), Ismail, Ishaq","ar":"لُوط، إِسْمَاعِيل، إِسْحَاق","n":56,"k":"w","w":56},{"id":197,"s":15,"p":9,"en":"Yaqub (Jacob) / Israel, Yusuf (Joseph)","ar":"يَعْقُوب (إِسْرَائِيل)، يُوسُف","n":86,"k":"w","w":86},{"id":198,"s":15,"p":9,"en":"Hud, Shuayb, Salih","ar":"هُود، شُعَيْب، صَالِح","n":30,"k":"w","w":30},{"id":199,"s":15,"p":9,"en":"Musa (Moses), Isa (Jesus), Ibn Maryam","ar":"مُوسَىٰ، عِيسَىٰ، ابْنُ مَرْيَم","n":195,"k":"w","w":195},{"id":200,"s":15,"p":9,"en":"Satan (pl: شَيَاطِين)","ar":"شَيْطَان (شَيَاطِين)","n":88,"k":"w","w":88},{"id":201,"s":15,"p":9,"en":"Pharaoh","ar":"فِرْعَوْن","n":74,"k":"w","w":74},{"id":202,"s":15,"p":9,"en":"People of Hud","ar":"عَاد","n":24,"k":"w","w":24},{"id":203,"s":15,"p":9,"en":"People of Salih","ar":"ثَمُود","n":26,"k":"w","w":26},{"id":204,"s":15,"p":9,"en":"sign","ar":"آيَة (آيَات pl)","n":382,"k":"w","w":382},{"id":205,"s":15,"p":9,"en":"evidence","ar":"بَيِّنَة (بَيِّنَات)","n":71,"k":"w","w":71},{"id":206,"s":15,"p":9,"en":"Qur'an; reading, recitation","ar":"قُرْآن","n":70,"k":"w","w":70},{"id":207,"s":15,"p":9,"en":"cattle","ar":"أَنْعَام","n":32,"k":"w","w":32},{"id":208,"s":15,"p":9,"en":"mountain","ar":"جَبَل (جِبَال pl)","n":39,"k":"w","w":39},{"id":209,"s":15,"p":9,"en":"sea; large river","ar":"بَحْر","n":38,"k":"w","w":38},{"id":210,"s":15,"p":9,"en":"sun","ar":"شَمْس","n":33,"k":"w","w":33},{"id":211,"s":15,"p":9,"en":"moon","ar":"قَمَر","n":33,"k":"w","w":33},{"id":212,"s":15,"p":9,"en":"night","ar":"لَيْل","n":80,"k":"w","w":80},{"id":213,"s":15,"p":9,"en":"day","ar":"نَهَار","n":57,"k":"w","w":57},{"id":214,"s":15,"p":9,"en":"earth","ar":"أَرْض","n":461,"k":"w","w":461},{"id":215,"s":15,"p":9,"en":"sky","ar":"سَمَاء (سَمَاوَات pl)","n":310,"k":"w","w":310},{"id":216,"s":16,"p":10,"en":"companion, fellow","ar":"صَاحِب (أَصْحَاب)","n":94,"k":"w","w":94},{"id":217,"s":16,"p":10,"en":"end","ar":"عَاقِبَة","n":32,"k":"w","w":32},{"id":218,"s":16,"p":10,"en":"torment","ar":"عَذَاب","n":332,"k":"w","w":332},{"id":219,"s":16,"p":10,"en":"chastisement (as a result of sin)","ar":"عِقَاب","n":20,"k":"w","w":20},{"id":220,"s":16,"p":10,"en":"Resurrection","ar":"قِيَامَة","n":70,"k":"w","w":70},{"id":221,"s":16,"p":10,"en":"meeting","ar":"لِقَاء","n":24,"k":"w","w":24},{"id":222,"s":16,"p":10,"en":"fixed","ar":"مُسَمًّى","n":21,"k":"w","w":21},{"id":223,"s":16,"p":10,"en":"fire","ar":"نَار","n":145,"k":"w","w":145},{"id":224,"s":16,"p":10,"en":"river","ar":"نَهْر (أَنْهَار pl)","n":54,"k":"w","w":54},{"id":225,"s":16,"p":10,"en":"woe unto ...","ar":"وَيْل","n":40,"k":"w","w":40},{"id":226,"s":16,"p":10,"en":"day","ar":"يَوْم (أَيَّام pl)","n":393,"k":"w","w":393},{"id":227,"s":16,"p":10,"en":"that day","ar":"يَوْمَئِذٍ","n":70,"k":"w","w":70},{"id":228,"s":16,"p":10,"en":"forever; ever","ar":"أَبَدًا","n":28,"k":"w","w":28},{"id":229,"s":16,"p":10,"en":"reward","ar":"أَجْر (أُجُور pl)","n":105,"k":"w","w":105},{"id":230,"s":16,"p":10,"en":"term","ar":"أَجَل","n":52,"k":"w","w":52},{"id":231,"s":16,"p":10,"en":"the Hereafter","ar":"الْآخِرَة","n":115,"k":"w","w":115},{"id":232,"s":16,"p":10,"en":"painful","ar":"أَلِيم","n":72,"k":"w","w":72},{"id":233,"s":16,"p":10,"en":"reward","ar":"ثَوَاب","n":13,"k":"w","w":13},{"id":234,"s":16,"p":10,"en":"hellfire","ar":"جَحِيم","n":26,"k":"w","w":26},{"id":235,"s":16,"p":10,"en":"reward","ar":"جَزَاء","n":42,"k":"w","w":42},{"id":236,"s":16,"p":10,"en":"garden","ar":"جَنَّة (جَنَّات pl)","n":147,"k":"w","w":147},{"id":237,"s":16,"p":10,"en":"the hell","ar":"جَهَنَّم","n":77,"k":"w","w":77},{"id":238,"s":16,"p":10,"en":"reckoning","ar":"حِسَاب","n":39,"k":"w","w":39},{"id":239,"s":16,"p":10,"en":"hour (day of resurrection)","ar":"سَاعَة","n":47,"k":"w","w":47},{"id":240,"s":17,"p":11,"en":"matter; affair","ar":"أَمْر (أُمُور pl)","n":13,"k":"w","w":13},{"id":241,"s":17,"p":11,"en":"piety; fear; protection","ar":"تَقْوَىٰ","n":17,"k":"w","w":17},{"id":242,"s":17,"p":11,"en":"truth, true; right","ar":"حَقّ","n":247,"k":"w","w":247},{"id":243,"s":17,"p":11,"en":"falsehood","ar":"بَاطِل","n":26,"k":"w","w":26},{"id":244,"s":17,"p":11,"en":"wisdom","ar":"حِكْمَة","n":20,"k":"w","w":20},{"id":245,"s":17,"p":11,"en":"praise","ar":"حَمْد","n":43,"k":"w","w":43},{"id":246,"s":17,"p":11,"en":"religion; law; judgement","ar":"دِين","n":92,"k":"w","w":92},{"id":247,"s":17,"p":11,"en":"poor-due, charity","ar":"زَكَاة","n":32,"k":"w","w":32},{"id":248,"s":17,"p":11,"en":"witness, present","ar":"شَهِيد (شُهَدَاء pl)","n":56,"k":"w","w":56},{"id":249,"s":17,"p":11,"en":"prayer","ar":"صَلَاة","n":83,"k":"w","w":83},{"id":250,"s":17,"p":11,"en":"clear, self-expressive","ar":"مُبِين","n":119,"k":"w","w":119},{"id":251,"s":17,"p":11,"en":"light","ar":"نُور","n":43,"k":"w","w":43},{"id":252,"s":18,"p":11,"en":"one (fg: إِحْدَىٰ)","ar":"أَحَد (إِحْدَىٰ)","n":85,"k":"w","w":85},{"id":253,"s":18,"p":11,"en":"god; deity","ar":"إِلَٰه (آلِهَة pl)","n":34,"k":"w","w":34},{"id":254,"s":18,"p":11,"en":"partner, associate","ar":"شَرِيك (شُرَكَاء pl)","n":40,"k":"w","w":40},{"id":255,"s":18,"p":11,"en":"witness","ar":"شَهَادَة","n":26,"k":"w","w":26},{"id":256,"s":18,"p":11,"en":"throne","ar":"عَرْش","n":26,"k":"w","w":26},{"id":257,"s":18,"p":11,"en":"covenant, promise","ar":"عَهْد","n":29,"k":"w","w":29},{"id":258,"s":18,"p":11,"en":"unseen","ar":"غَيْب","n":49,"k":"w","w":49},{"id":259,"s":18,"p":11,"en":"book","ar":"كِتَاب (كُتُب pl)","n":261,"k":"w","w":261},{"id":260,"s":18,"p":11,"en":"word","ar":"كَلِمَة","n":42,"k":"w","w":42},{"id":261,"s":18,"p":11,"en":"angel","ar":"مَلَك (مَلَائِكَة pl)","n":88,"k":"w","w":88},{"id":262,"s":18,"p":11,"en":"covenant, treaty","ar":"مِيثَاق","n":25,"k":"w","w":25},{"id":263,"s":18,"p":11,"en":"one (fg: وَاحِدَة)","ar":"وَاحِد (وَاحِدَة)","n":61,"k":"w","w":61},{"id":264,"s":19,"p":12,"en":"actions, deeds, works","ar":"أَعْمَال pl","n":41,"k":"w","w":41},{"id":265,"s":19,"p":12,"en":"good (deed)","ar":"حَسَنَة (حَسَنَات pl)","n":31,"k":"w","w":31},{"id":266,"s":19,"p":12,"en":"evil, bad","ar":"سَيِّئَة (سَيِّئَات pl)","n":68,"k":"w","w":68},{"id":267,"s":19,"p":12,"en":"good, better","ar":"خَيْر","n":186,"k":"w","w":186},{"id":268,"s":19,"p":12,"en":"evil, bad, worse","ar":"شَرّ","n":29,"k":"w","w":29},{"id":269,"s":19,"p":12,"en":"sin","ar":"إِثْم","n":35,"k":"w","w":35},{"id":270,"s":19,"p":12,"en":"sin","ar":"ذَنْب (ذُنُوب pl)","n":37,"k":"w","w":37},{"id":271,"s":19,"p":12,"en":"sin","ar":"جُنَاح","n":25,"k":"w","w":25},{"id":272,"s":19,"p":12,"en":"unlawful","ar":"حَرَام","n":26,"k":"w","w":26},{"id":273,"s":19,"p":12,"en":"name","ar":"اِسْم (أَسْمَاء pl)","n":27,"k":"w","w":27},{"id":274,"s":19,"p":12,"en":"discourse; speech","ar":"حَدِيث (أَحَادِيث)","n":23,"k":"w","w":23},{"id":275,"s":19,"p":12,"en":"good","ar":"طَيِّبَة (طَيِّبَات pl)","n":30,"k":"w","w":30},{"id":276,"s":20,"p":12,"en":"favours","ar":"آلَاء","n":34,"k":"w","w":34},{"id":277,"s":20,"p":12,"en":"authority; warrant","ar":"سُلْطَان","n":37,"k":"w","w":37},{"id":278,"s":20,"p":12,"en":"grace","ar":"فَضْل","n":84,"k":"w","w":84},{"id":279,"s":20,"p":12,"en":"water","ar":"مَاء","n":63,"k":"w","w":63},{"id":280,"s":20,"p":12,"en":"dominion, reign","ar":"مُلْك","n":48,"k":"w","w":48},{"id":281,"s":20,"p":12,"en":"favour","ar":"نِعْمَة","n":37,"k":"w","w":37},{"id":282,"s":20,"p":12,"en":"all","ar":"أَجْمَعُون، أَجْمَعِين","n":26,"k":"w","w":26},{"id":283,"s":20,"p":12,"en":"permission","ar":"إِذْن","n":39,"k":"w","w":39},{"id":284,"s":20,"p":12,"en":"punishment; power; adversity","ar":"بَأْس","n":25,"k":"w","w":25},{"id":285,"s":20,"p":12,"en":"all, everybody","ar":"جَمِيع","n":53,"k":"w","w":53},{"id":286,"s":20,"p":12,"en":"same; equals; level; fair","ar":"سَوَاء","n":27,"k":"w","w":27},{"id":287,"s":20,"p":12,"en":"party, group","ar":"فَرِيق","n":33,"k":"w","w":33},{"id":288,"s":21,"p":13,"en":"mother","ar":"أُمّ (أُمَّهَات pl)","n":35,"k":"w","w":35},{"id":289,"s":21,"p":13,"en":"father","ar":"أَب، أَبَت (آبَاء pl)","n":117,"k":"w","w":117},{"id":290,"s":21,"p":13,"en":"wife; husband","ar":"زَوْج (أَزْوَاج pl)","n":76,"k":"w","w":76},{"id":291,"s":21,"p":13,"en":"man","ar":"رَجُل (رِجَال)","n":57,"k":"w","w":57},{"id":292,"s":21,"p":13,"en":"woman","ar":"اِمْرَأَة (نِسَاء pl)","n":83,"k":"w","w":83},{"id":293,"s":21,"p":13,"en":"child","ar":"وَلَد (أَوْلَاد)","n":56,"k":"w","w":56},{"id":294,"s":21,"p":13,"en":"father","ar":"وَالِد (وَالِدَيْن dl)","n":20,"k":"w","w":20},{"id":295,"s":21,"p":13,"en":"descendants; children","ar":"ذُرِّيَّة","n":32,"k":"w","w":32},{"id":296,"s":21,"p":13,"en":"son","ar":"اِبْن","n":41,"k":"w","w":41},{"id":297,"s":21,"p":13,"en":"sons","ar":"بَنُون، بَنِين، أَبْنَاء pl","n":22,"k":"w","w":22},{"id":298,"s":21,"p":13,"en":"brother","ar":"أَخ (أَخُو، أَخَا، أَخِي)","n":67,"k":"w","w":67},{"id":299,"s":21,"p":13,"en":"brothers","ar":"إِخْوَان pl","n":22,"k":"w","w":22},{"id":300,"s":22,"p":13,"en":"face","ar":"وَجْه (وُجُوه pl)","n":72,"k":"w","w":72},{"id":301,"s":22,"p":13,"en":"eye; spring","ar":"عَيْن (أَعْيُن pl)","n":47,"k":"w","w":47},{"id":302,"s":22,"p":13,"en":"sights","ar":"أَبْصَار pl","n":38,"k":"w","w":38},{"id":303,"s":22,"p":13,"en":"mouths","ar":"أَفْوَاه pl","n":21,"k":"w","w":21},{"id":304,"s":22,"p":13,"en":"tongue; language","ar":"لِسَان (أَلْسِنَة pl)","n":25,"k":"w","w":25},{"id":305,"s":22,"p":13,"en":"heart","ar":"قَلْب (قُلُوب pl)","n":132,"k":"w","w":132},{"id":306,"s":22,"p":13,"en":"breast","ar":"صَدْر (صُدُور pl)","n":44,"k":"w","w":44},{"id":307,"s":22,"p":13,"en":"hand","ar":"يَد (أَيْدِي pl)","n":118,"k":"w","w":118},{"id":308,"s":22,"p":13,"en":"foot","ar":"رِجْل (أَرْجُل pl)","n":15,"k":"w","w":15},{"id":309,"s":22,"p":13,"en":"soul","ar":"نَفْس (أَنْفُس pl)","n":293,"k":"w","w":293},{"id":310,"s":22,"p":13,"en":"soul, spirit","ar":"رُوح","n":21,"k":"w","w":21},{"id":311,"s":22,"p":13,"en":"power, strength","ar":"قُوَّة","n":28,"k":"w","w":28},{"id":312,"s":23,"p":14,"en":"house","ar":"بَيْت (بُيُوت pl)","n":64,"k":"w","w":64},{"id":313,"s":23,"p":14,"en":"abode","ar":"دَار (دِيَار pl)","n":48,"k":"w","w":48},{"id":314,"s":23,"p":14,"en":"world","ar":"دُنْيَا","n":115,"k":"w","w":115},{"id":315,"s":23,"p":14,"en":"way","ar":"سَبِيل (سُبُل pl)","n":176,"k":"w","w":176},{"id":316,"s":23,"p":14,"en":"path","ar":"صِرَاط","n":46,"k":"w","w":46},{"id":317,"s":23,"p":14,"en":"world","ar":"عَالَم (عَالَمِين pl)","n":73,"k":"w","w":73},{"id":318,"s":23,"p":14,"en":"trial; persecution","ar":"فِتْنَة","n":34,"k":"w","w":34},{"id":319,"s":23,"p":14,"en":"town","ar":"قَرْيَة (قُرَىٰ pl)","n":57,"k":"w","w":57},{"id":320,"s":23,"p":14,"en":"wealth","ar":"مَال (أَمْوَال pl)","n":86,"k":"w","w":86},{"id":321,"s":23,"p":14,"en":"provision; enjoyment","ar":"مَتَاع","n":34,"k":"w","w":34},{"id":322,"s":23,"p":14,"en":"mosque","ar":"مَسْجِد (مَسَاجِد pl)","n":28,"k":"w","w":28},{"id":323,"s":23,"p":14,"en":"place; abode","ar":"مَكَان (مَكَانَة)","n":32,"k":"w","w":32},{"id":324,"s":24,"p":14,"en":"community","ar":"أُمَّة (أُمَم pl)","n":64,"k":"w","w":64},{"id":325,"s":24,"p":14,"en":"people","ar":"قَوْم","n":383,"k":"w","w":383},{"id":326,"s":24,"p":14,"en":"man","ar":"إِنْسَان","n":65,"k":"w","w":65},{"id":327,"s":24,"p":14,"en":"men, people","ar":"نَاس","n":248,"k":"w","w":248},{"id":328,"s":24,"p":14,"en":"male","ar":"ذَكَر (ذُكُور pl)","n":16,"k":"w","w":16},{"id":329,"s":24,"p":14,"en":"female","ar":"أُنْثَىٰ (إِنَاث pl)","n":30,"k":"w","w":30},{"id":330,"s":24,"p":14,"en":"slave","ar":"عَبْد (عِبَاد pl)","n":126,"k":"w","w":126},{"id":331,"s":24,"p":14,"en":"enemy","ar":"عَدُوّ (أَعْدَاء pl)","n":44,"k":"w","w":44},{"id":332,"s":24,"p":14,"en":"disbelievers","ar":"كُفَّار","n":21,"k":"w","w":21},{"id":333,"s":24,"p":14,"en":"criminal","ar":"مُجْرِم","n":52,"k":"w","w":52},{"id":334,"s":24,"p":14,"en":"chiefs, leaders","ar":"مَلَأ","n":22,"k":"w","w":22},{"id":335,"s":24,"p":14,"en":"protecting friend; guardian","ar":"وَلِيّ (أَوْلِيَاء)","n":86,"k":"w","w":86},{"id":336,"s":25,"p":15,"en":"to do","ar":"فَعَلَ~يَفْعَلُ~اِفْعَلْ~فَاعِل~فِعْل","n":105,"k":"v","w":105},{"id":337,"s":25,"p":15,"en":"to open; to give victory","ar":"فَتَحَ~يَفْتَحُ~اِفْتَحْ~فَاتِح~فَتْح","n":29,"k":"v","w":29},{"id":338,"s":25,"p":15,"en":"to raise; to resurrect","ar":"بَعَثَ~يَبْعَثُ~اِبْعَثْ~بَاعِث~بَعْث","n":65,"k":"v","w":65},{"id":339,"s":25,"p":15,"en":"to make, to place, to set up","ar":"جَعَلَ~يَجْعَلُ~اِجْعَلْ~جَاعِل~جَعْل","n":346,"k":"v","w":346},{"id":340,"s":25,"p":15,"en":"to gather, to collect","ar":"جَمَعَ~يَجْمَعُ~اِجْمَعْ~جَامِع~جَمْع","n":40,"k":"v","w":40},{"id":341,"s":25,"p":15,"en":"to go","ar":"ذَهَبَ~يَذْهَبُ~اِذْهَبْ~ذَاهِب~ذَهَاب","n":35,"k":"v","w":35},{"id":342,"s":25,"p":15,"en":"to raise","ar":"رَفَعَ~يَرْفَعُ~اِرْفَعْ~رَافِع~رَفْع","n":28,"k":"v","w":28},{"id":343,"s":25,"p":15,"en":"to enchant, to bewitch","ar":"سَحَرَ~يَسْحَرُ~اِسْحَرْ~سَاحِر~سِحْر","n":49,"k":"v","w":49},{"id":344,"s":25,"p":15,"en":"to act righteously","ar":"صَلَحَ~يَصْلَحُ~اِصْلَحْ~صَالِح~مَصْلَحَة","n":131,"k":"v","w":131},{"id":345,"s":25,"p":15,"en":"to curse","ar":"لَعَنَ~يَلْعَنُ~اِلْعَنْ~لَاعِن~لَعْن","n":27,"k":"v","w":27},{"id":346,"s":25,"p":15,"en":"to profit","ar":"نَفَعَ~يَنْفَعُ~اِنْفَعْ~نَافِع~نَفْع","n":42,"k":"v","w":42},{"id":347,"s":26,"p":16,"en":"to help; to deliver","ar":"نَصَرَ~يَنْصُرُ~اُنْصُرْ~نَاصِر~نَصْر","n":92,"k":"v","w":92},{"id":348,"s":26,"p":16,"en":"to reach","ar":"بَلَغَ~يَبْلُغُ~اُبْلُغْ~بَالِغ~بُلُوغ","n":49,"k":"v","w":49},{"id":349,"s":26,"p":16,"en":"to leave","ar":"تَرَكَ~يَتْرُكُ~اُتْرُكْ~تَارِك~تَرْك","n":43,"k":"v","w":43},{"id":350,"s":26,"p":16,"en":"to gather; to bring together","ar":"حَشَرَ~يَحْشُرُ~اُحْشُرْ~حَاشِر~حَشْر","n":43,"k":"v","w":43},{"id":351,"s":26,"p":16,"en":"to judge; to rule","ar":"حَكَمَ~يَحْكُمُ~اُحْكُمْ~حَاكِم~حُكْم","n":80,"k":"v","w":80},{"id":352,"s":26,"p":16,"en":"to come out","ar":"خَرَجَ~يَخْرُجُ~اُخْرُجْ~خَارِج~خُرُوج","n":61,"k":"v","w":61},{"id":353,"s":26,"p":16,"en":"to live forever","ar":"خَلَدَ~يَخْلُدُ~اُخْلُدْ~خَالِد~خُلُود","n":83,"k":"v","w":83},{"id":354,"s":26,"p":16,"en":"to create out of nothing","ar":"خَلَقَ~يَخْلُقُ~اُخْلُقْ~خَالِق~خَلْق","n":248,"k":"v","w":248},{"id":355,"s":26,"p":16,"en":"to enter","ar":"دَخَلَ~يَدْخُلُ~اُدْخُلْ~دَاخِل~دُخُول","n":78,"k":"v","w":78},{"id":356,"s":26,"p":16,"en":"to remember","ar":"ذَكَرَ~يَذْكُرُ~اُذْكُرْ~ذَاكِر~ذِكْر","n":163,"k":"v","w":163},{"id":357,"s":26,"p":16,"en":"to provide","ar":"رَزَقَ~يَرْزُقُ~اُرْزُقْ~رَازِق~رِزْق","n":122,"k":"v","w":122},{"id":358,"s":27,"p":17,"en":"to prostrate","ar":"سَجَدَ~يَسْجُدُ~اُسْجُدْ~سَاجِد~سُجُود","n":49,"k":"v","w":49},{"id":359,"s":27,"p":17,"en":"to perceive","ar":"شَعَرَ~يَشْعُرُ~اُشْعُرْ~شَاعِر~شُعُور","n":29,"k":"v","w":29},{"id":360,"s":27,"p":17,"en":"to be grateful","ar":"شَكَرَ~يَشْكُرُ~اُشْكُرْ~شَاكِر~شُكْر","n":63,"k":"v","w":63},{"id":361,"s":27,"p":17,"en":"to be true; to say the truth","ar":"صَدَقَ~يَصْدُقُ~اُصْدُقْ~صَادِق~صِدْق","n":89,"k":"v","w":89},{"id":362,"s":27,"p":17,"en":"to worship; to serve","ar":"عَبَدَ~يَعْبُدُ~اُعْبُدْ~عَابِد~عِبَادَة","n":143,"k":"v","w":143},{"id":363,"s":27,"p":17,"en":"to transgress","ar":"فَسَقَ~يَفْسُقُ~اُفْسُقْ~فَاسِق~فِسْق","n":54,"k":"v","w":54},{"id":364,"s":27,"p":17,"en":"to kill; to slay","ar":"قَتَلَ~يَقْتُلُ~اُقْتُلْ~قَاتِل~قَتْل","n":93,"k":"v","w":93},{"id":365,"s":27,"p":17,"en":"to sit; to remain behind","ar":"قَعَدَ~يَقْعُدُ~اُقْعُدْ~قَاعِد~قُعُود","n":23,"k":"v","w":23},{"id":366,"s":27,"p":17,"en":"to prescribe; to write","ar":"كَتَبَ~يَكْتُبُ~اُكْتُبْ~كَاتِب~كِتَابَة","n":56,"k":"v","w":56},{"id":367,"s":27,"p":17,"en":"to disbelieve; to be ungrateful","ar":"كَفَرَ~يَكْفُرُ~اُكْفُرْ~كَافِر~كُفْر","n":461,"k":"v","w":461},{"id":368,"s":27,"p":17,"en":"to plot","ar":"مَكَرَ~يَمْكُرُ~اُمْكُرْ~مَاكِر~مَكْر","n":43,"k":"v","w":43},{"id":369,"s":27,"p":17,"en":"to look; to wait","ar":"نَظَرَ~يَنْظُرُ~اُنْظُرْ~نَاظِر~نَظَر","n":95,"k":"v","w":95},{"id":370,"s":28,"p":18,"en":"to strike","ar":"ضَرَبَ~يَضْرِبُ~اِضْرِبْ~ضَارِب~ضَرْب","n":58,"k":"v","w":58},{"id":371,"s":28,"p":18,"en":"to carry; to bear","ar":"حَمَلَ~يَحْمِلُ~اِحْمِلْ~حَامِل~حَمْل","n":50,"k":"v","w":50},{"id":372,"s":28,"p":18,"en":"to bear with patience","ar":"صَبَرَ~يَصْبِرُ~اِصْبِرْ~صَابِر~صَبْر","n":94,"k":"v","w":94},{"id":373,"s":28,"p":18,"en":"to wrong","ar":"ظَلَمَ~يَظْلِمُ~اِظْلِمْ~ظَالِم~ظُلْم","n":266,"k":"v","w":266},{"id":374,"s":28,"p":18,"en":"to recognise","ar":"عَرَفَ~يَعْرِفُ~اِعْرِفْ~عَارِف~مَعْرِفَة","n":59,"k":"v","w":59},{"id":375,"s":28,"p":18,"en":"to understand; to comprehend","ar":"عَقَلَ~يَعْقِلُ~اِعْقِلْ~عَاقِل~عَقْل","n":49,"k":"v","w":49},{"id":376,"s":28,"p":18,"en":"to forgive; to cover","ar":"غَفَرَ~يَغْفِرُ~اِغْفِرْ~غَافِر~مَغْفِرَة","n":95,"k":"v","w":95},{"id":377,"s":28,"p":18,"en":"to decree; to have power","ar":"قَدَرَ~يَقْدِرُ~اِقْدِرْ~قَادِر~قَدْر، قُدْرَة","n":47,"k":"v","w":47},{"id":378,"s":28,"p":18,"en":"to lie","ar":"كَذَبَ~يَكْذِبُ~اِكْذِبْ~كَاذِب~كَذِب","n":76,"k":"v","w":76},{"id":379,"s":28,"p":18,"en":"to earn","ar":"كَسَبَ~يَكْسِبُ~اِكْسِبْ~كَاسِب~كَسْب","n":62,"k":"v","w":62},{"id":380,"s":28,"p":18,"en":"to possess","ar":"مَلَكَ~يَمْلِكُ~اِمْلِكْ~مَالِك~مِلْك","n":49,"k":"v","w":49},{"id":381,"s":29,"p":19,"en":"to hear","ar":"سَمِعَ~يَسْمَعُ~اِسْمَعْ~سَامِع~سَمَاعَة","n":100,"k":"v","w":100},{"id":382,"s":29,"p":19,"en":"to be grieved","ar":"حَزِنَ~يَحْزَنُ~اِحْزَنْ~حَازِن~حُزْن","n":30,"k":"v","w":30},{"id":383,"s":29,"p":19,"en":"to think; to consider","ar":"حَسِبَ~يَحْسَبُ~اِحْسَبْ~حَاسِب~حُسْبَان","n":46,"k":"v","w":46},{"id":384,"s":29,"p":19,"en":"to guard; to protect","ar":"حَفِظَ~يَحْفَظُ~اِحْفَظْ~حَافِظ~حِفْظ","n":27,"k":"v","w":27},{"id":385,"s":29,"p":19,"en":"to lose","ar":"خَسِرَ~يَخْسَرُ~اِخْسَرْ~خَاسِر~خُسْر","n":51,"k":"v","w":51},{"id":386,"s":29,"p":19,"en":"to have mercy on someone","ar":"رَحِمَ~يَرْحَمُ~اِرْحَمْ~رَاحِم~رَحْمَة","n":148,"k":"v","w":148},{"id":387,"s":29,"p":19,"en":"to bear witness; to be present","ar":"شَهِدَ~يَشْهَدُ~اِشْهَدْ~شَاهِد~شُهُود","n":66,"k":"v","w":66},{"id":388,"s":29,"p":19,"en":"to know","ar":"عَلِمَ~يَعْلَمُ~اِعْلَمْ~عَالِم~عِلْم","n":518,"k":"v","w":518},{"id":389,"s":29,"p":19,"en":"to work; to do","ar":"عَمِلَ~يَعْمَلُ~اِعْمَلْ~عَامِل~عَمَل","n":318,"k":"v","w":318},{"id":390,"s":29,"p":19,"en":"to dislike; to detest","ar":"كَرِهَ~يَكْرَهُ~اِكْرَهْ~كَارِه~كُرْه","n":25,"k":"v","w":25},{"id":391,"s":29,"p":19,"en":"to watch; to see","ar":"بَصُرَ~يَبْصُرُ~اُبْصُرْ~بَاصِر~بَصَر","n":13,"k":"v","w":13},{"id":392,"s":30,"p":20,"en":"to live; to greet","ar":"حَيِيَ~يَحْيَا~اِحْيَ~حَيّ~حَيَاة","n":83,"k":"v","w":83},{"id":393,"s":30,"p":20,"en":"to give back; to return","ar":"رَدَّ~يَرُدُّ~اُرْدُدْ~رَادّ~رَدّ","n":45,"k":"v","w":45},{"id":394,"s":30,"p":20,"en":"to turn away; to hinder","ar":"صَدَّ~يَصُدُّ~اُصْدُدْ~صَادّ~صَدّ","n":39,"k":"v","w":39},{"id":395,"s":30,"p":20,"en":"to hurt; to harm","ar":"ضَرَّ~يَضُرُّ~اُضْرُرْ~ضَارّ~ضَرّ","n":31,"k":"v","w":31},{"id":396,"s":30,"p":20,"en":"to go astray; to err; to waste","ar":"ضَلَّ~يَضِلُّ~اِضْلِلْ~ضَالّ~ضَلَالَة","n":113,"k":"v","w":113},{"id":397,"s":30,"p":20,"en":"to think; to believe","ar":"ظَنَّ~يَظُنُّ~اُظْنُنْ~ظَانّ~ظَنّ","n":68,"k":"v","w":68},{"id":398,"s":30,"p":20,"en":"to count","ar":"عَدَّ~يَعُدُّ~اُعْدُدْ~عَادّ~عَدّ","n":17,"k":"v","w":17},{"id":399,"s":30,"p":20,"en":"to beguile","ar":"غَرَّ~يَغُرُّ~اُغْرُرْ~غَارّ~غُرُور","n":24,"k":"v","w":24},{"id":400,"s":30,"p":20,"en":"to spread out; to stretch","ar":"مَدَّ~يَمُدُّ~اُمْدُدْ~مَادّ~مَدّ","n":17,"k":"v","w":17},{"id":401,"s":30,"p":20,"en":"to touch","ar":"مَسَّ~يَمَسُّ~اِمْسَسْ~مَاسّ~مَسّ","n":58,"k":"v","w":58},{"id":402,"s":30,"p":20,"en":"to love; to wish","ar":"وَدَّ~يَوَدُّ~اُوْدُدْ~وَادّ~وُدّ","n":18,"k":"v","w":18},{"id":403,"s":31,"p":21,"en":"to leave behind","ar":"وَذَرَ~يَذَرُ~ذَرْ~وَاذِر~وَذْر","n":45,"k":"v","w":45},{"id":404,"s":31,"p":21,"en":"to put; to set","ar":"وَضَعَ~يَضَعُ~ضَعْ~وَاضِع~وَضْع","n":22,"k":"v","w":22},{"id":405,"s":31,"p":21,"en":"to befall","ar":"وَقَعَ~يَقَعُ~قَعْ~وَاقِع~وُقُوع","n":20,"k":"v","w":20},{"id":406,"s":31,"p":21,"en":"to grant","ar":"وَهَبَ~يَهَبُ~هَبْ~وَاهِب~وَهْب","n":23,"k":"v","w":23},{"id":407,"s":31,"p":21,"en":"to find","ar":"وَجَدَ~يَجِدُ~جِدْ~وَاجِد~وُجُود","n":107,"k":"v","w":107},{"id":408,"s":31,"p":21,"en":"to inherit","ar":"وَرِثَ~يَرِثُ~رِثْ~وَارِث~وِرَاثَة","n":19,"k":"v","w":19},{"id":409,"s":31,"p":21,"en":"to bear a load","ar":"وَزَرَ~يَزِرُ~زِرْ~وَازِر~وِزْر","n":19,"k":"v","w":19},{"id":410,"s":31,"p":21,"en":"to describe; to ascribe","ar":"وَصَفَ~يَصِفُ~صِفْ~وَاصِف~وَصْف","n":14,"k":"v","w":14},{"id":411,"s":31,"p":21,"en":"to promise","ar":"وَعَدَ~يَعِدُ~عِدْ~وَاعِد~وَعْد","n":124,"k":"v","w":124},{"id":412,"s":31,"p":21,"en":"to protect; to save","ar":"وَقَىٰ~يَقِي~قِ~وَاقٍ~وِقَايَة","n":19,"k":"v","w":19},{"id":413,"s":31,"p":21,"en":"to embrace; to comprehend","ar":"وَسِعَ~يَسَعُ~اِيْسَعْ~وَاسِع~سَعَة","n":25,"k":"v","w":25},{"id":414,"s":32,"p":22,"en":"to repent","ar":"تَابَ~يَتُوبُ~تُبْ~تَائِب~تَوْبَة","n":72,"k":"v","w":72},{"id":415,"s":32,"p":22,"en":"to taste","ar":"ذَاقَ~يَذُوقُ~ذُقْ~ذَائِق~ذَوْق","n":42,"k":"v","w":42},{"id":416,"s":32,"p":22,"en":"to succeed; to gain victory","ar":"فَازَ~يَفُوزُ~فُزْ~فَائِز~فَوْز","n":26,"k":"v","w":26},{"id":417,"s":32,"p":22,"en":"to say","ar":"قَالَ~يَقُولُ~قُلْ~قَائِل~قَوْل","n":1719,"k":"v","w":1719},{"id":418,"s":32,"p":22,"en":"to stand up; to raise","ar":"قَامَ~يَقُومُ~قُمْ~قَائِم~قِيَام","n":55,"k":"v","w":55},{"id":419,"s":32,"p":22,"en":"to be","ar":"كَانَ~يَكُونُ~كُنْ~كَائِن~كَوْن","n":1361,"k":"v","w":1361},{"id":420,"s":32,"p":22,"en":"to die","ar":"مَاتَ~يَمُوتُ~مُتْ~مَائِت~مَوْت","n":93,"k":"v","w":93},{"id":421,"s":32,"p":22,"en":"to be afraid","ar":"خَافَ~يَخَافُ~خَفْ~خَائِف~خَوْف","n":112,"k":"v","w":112},{"id":422,"s":32,"p":22,"en":"to become nigh; to be close to","ar":"كَادَ~يَكَادُ~كَدْ~كَائِد~كَوْد","n":24,"k":"v","w":24},{"id":423,"s":32,"p":22,"en":"to plot against","ar":"كَادَ~يَكِيدُ~كِدْ~كَائِد~كَيْد","n":35,"k":"v","w":35},{"id":424,"s":32,"p":22,"en":"to increase","ar":"زَادَ~يَزِيدُ~زِدْ~زَائِد~زِيَادَة","n":51,"k":"v","w":51},{"id":425,"s":33,"p":23,"en":"to recite","ar":"تَلَا~يَتْلُو~اُتْلُ~تَالٍ~تِلَاوَة","n":61,"k":"v","w":61},{"id":426,"s":33,"p":23,"en":"to call; to pray","ar":"دَعَا~يَدْعُو~اُدْعُ~دَاعٍ~دُعَاء","n":197,"k":"v","w":197},{"id":427,"s":33,"p":23,"en":"to forgo","ar":"عَفَا~يَعْفُو~اُعْفُ~عَافٍ~عَفْو","n":30,"k":"v","w":30},{"id":428,"s":33,"p":23,"en":"to want, to seek","ar":"بَغَىٰ~يَبْغِي~اِبْغِ~بَاغٍ~بَغْي","n":29,"k":"v","w":29},{"id":429,"s":33,"p":23,"en":"to flow","ar":"جَرَىٰ~يَجْرِي~اِجْرِ~جَارٍ~جَرَيَان","n":60,"k":"v","w":60},{"id":430,"s":33,"p":23,"en":"to reward","ar":"جَزَىٰ~يَجْزِي~اِجْزِ~جَازٍ~جَزَاء","n":116,"k":"v","w":116},{"id":431,"s":33,"p":23,"en":"to decree; to fulfil","ar":"قَضَىٰ~يَقْضِي~اِقْضِ~قَاضٍ~قَضَاء","n":62,"k":"v","w":62},{"id":432,"s":33,"p":23,"en":"to suffice","ar":"كَفَىٰ~يَكْفِي~اِكْفِ~كَافٍ~كِفَايَة","n":32,"k":"v","w":32},{"id":433,"s":33,"p":23,"en":"to guide; to direct","ar":"هَدَىٰ~يَهْدِي~اِهْدِ~هَادٍ~هُدًى","n":163,"k":"v","w":163},{"id":434,"s":33,"p":23,"en":"to fear","ar":"خَشِيَ~يَخْشَىٰ~اِخْشَ~خَاشٍ~خَشْيَة","n":48,"k":"v","w":48},{"id":435,"s":33,"p":23,"en":"to be satisfied; to be content","ar":"رَضِيَ~يَرْضَىٰ~اِرْضَ~رَاضٍ~رِضْوَان","n":57,"k":"v","w":57},{"id":436,"s":33,"p":23,"en":"to forget","ar":"نَسِيَ~يَنْسَىٰ~اِنْسَ~نَاسٍ~نِسْيَان","n":36,"k":"v","w":36},{"id":437,"s":34,"p":24,"en":"to ask","ar":"سَأَلَ~يَسْأَلُ~سَلْ~سَائِل~سُؤَال","n":119,"k":"v","w":119},{"id":438,"s":34,"p":24,"en":"to read; to recite","ar":"قَرَأَ~يَقْرَأُ~اِقْرَأْ~قَارِئ~قِرَاءَة","n":17,"k":"v","w":17},{"id":439,"s":34,"p":24,"en":"to take; to catch","ar":"أَخَذَ~يَأْخُذُ~خُذْ~آخِذ~أَخْذ","n":142,"k":"v","w":142},{"id":440,"s":34,"p":24,"en":"to eat","ar":"أَكَلَ~يَأْكُلُ~كُلْ~آكِل~أَكْل","n":101,"k":"v","w":101},{"id":441,"s":34,"p":24,"en":"to command","ar":"أَمَرَ~يَأْمُرُ~مُرْ~آمِر~أَمْر","n":232,"k":"v","w":232},{"id":442,"s":34,"p":24,"en":"to be safe; to feel safe; to trust","ar":"أَمِنَ~يَأْمَنُ~اِئْمَنْ~آمِن~أَمْن","n":25,"k":"v","w":25},{"id":443,"s":34,"p":24,"en":"to refuse","ar":"أَبَىٰ~يَأْبَىٰ~اِئْبَ~آبٍ~إِبَاء","n":13,"k":"v","w":13},{"id":444,"s":34,"p":24,"en":"to see","ar":"رَأَىٰ~يَرَىٰ~رَ~رَاءٍ~رُؤْيَة","n":269,"k":"v","w":269},{"id":445,"s":34,"p":24,"en":"to come","ar":"أَتَىٰ~يَأْتِي~اِئْتِ~آتٍ~إِتْيَان","n":263,"k":"v","w":263},{"id":446,"s":34,"p":24,"en":"to will, to wish","ar":"شَاءَ~يَشَاءُ~شَأْ~شَاءٍ~مَشِيئَة","n":277,"k":"v","w":277},{"id":447,"s":34,"p":24,"en":"to be evil","ar":"سَاءَ~يَسُوءُ~سُؤْ~سَاوِئ~سُوء","n":39,"k":"v","w":39},{"id":448,"s":34,"p":24,"en":"to come","ar":"جَاءَ~يَجِيءُ~جِئْ~جَاءٍ~مَجِيء","n":236,"k":"v","w":236},{"id":449,"s":35,"p":25,"en":"to change","ar":"بَدَّلَ~يُبَدِّلُ~بَدِّلْ~مُبَدِّل~تَبْدِيل","n":33,"k":"v","w":33},{"id":450,"s":35,"p":25,"en":"to give good news","ar":"بَشَّرَ~يُبَشِّرُ~بَشِّرْ~مُبَشِّر~تَبْشِير","n":48,"k":"v","w":48},{"id":451,"s":35,"p":25,"en":"to make clear","ar":"بَيَّنَ~يُبَيِّنُ~بَيِّنْ~مُبَيِّن~تَبْيِين","n":35,"k":"v","w":35},{"id":452,"s":35,"p":25,"en":"to adorn / make st seem fair","ar":"زَيَّنَ~يُزَيِّنُ~زَيِّنْ~مُزَيِّن~تَزْيِين","n":26,"k":"v","w":26},{"id":453,"s":35,"p":25,"en":"to glorify; to praise","ar":"سَبَّحَ~يُسَبِّحُ~سَبِّحْ~مُسَبِّح~تَسْبِيح","n":48,"k":"v","w":48},{"id":454,"s":35,"p":25,"en":"to bring under control","ar":"سَخَّرَ~يُسَخِّرُ~سَخِّرْ~مُسَخِّر~تَسْخِير","n":26,"k":"v","w":26},{"id":455,"s":35,"p":25,"en":"to pronounce ss to be true","ar":"صَدَّقَ~يُصَدِّقُ~صَدِّقْ~مُصَدِّق~تَصْدِيق","n":31,"k":"v","w":31},{"id":456,"s":35,"p":25,"en":"to punish; to torment","ar":"عَذَّبَ~يُعَذِّبُ~عَذِّبْ~مُعَذِّب~تَعْذِيب","n":49,"k":"v","w":49},{"id":457,"s":35,"p":25,"en":"to teach","ar":"عَلَّمَ~يُعَلِّمُ~عَلِّمْ~مُعَلِّم~تَعْلِيم","n":42,"k":"v","w":42},{"id":458,"s":35,"p":25,"en":"to send forward","ar":"قَدَّمَ~يُقَدِّمُ~قَدِّمْ~مُقَدِّم~تَقْدِيم","n":27,"k":"v","w":27},{"id":459,"s":35,"p":25,"en":"to accuse ss of falsehood","ar":"كَذَّبَ~يُكَذِّبُ~كَذِّبْ~مُكَذِّب~تَكْذِيب","n":198,"k":"v","w":198},{"id":460,"s":36,"p":26,"en":"to declare; to apprise","ar":"نَبَّأَ~يُنَبِّئُ~نَبِّئْ~مُنَبِّئ~تَنْبِئَة","n":46,"k":"v","w":46},{"id":461,"s":36,"p":26,"en":"to send down","ar":"نَزَّلَ~يُنَزِّلُ~نَزِّلْ~مُنَزِّل~تَنْزِيل","n":79,"k":"v","w":79},{"id":462,"s":36,"p":26,"en":"to deliver; to rescue","ar":"نَجَّىٰ~يُنَجِّي~نَجِّ~مُنَجٍّ~تَنْجِيَة","n":39,"k":"v","w":39},{"id":463,"s":36,"p":26,"en":"to turn","ar":"وَلَّىٰ~يُوَلِّي~وَلِّ~مُوَلٍّ~تَوْلِيَة","n":45,"k":"v","w":45},{"id":464,"s":37,"p":26,"en":"to struggle; to strive","ar":"جَاهَدَ~يُجَاهِدُ~جَاهِدْ~مُجَاهِد~مُجَاهَدَة","n":31,"k":"v","w":31},{"id":465,"s":37,"p":26,"en":"to fight","ar":"قَاتَلَ~يُقَاتِلُ~قَاتِلْ~مُقَاتِل~مُقَاتَلَة","n":54,"k":"v","w":54},{"id":466,"s":37,"p":26,"en":"to call out; to cry unto","ar":"نَادَىٰ~يُنَادِي~نَادِ~مُنَادٍ~مُنَادَاة، نِدَاء","n":44,"k":"v","w":44},{"id":467,"s":37,"p":26,"en":"to play hypocrisy","ar":"نَافَقَ~يُنَافِقُ~نَافِقْ~مُنَافِق~مُنَافَقَة","n":34,"k":"v","w":34},{"id":468,"s":37,"p":26,"en":"to migrate","ar":"هَاجَرَ~يُهَاجِرُ~هَاجِرْ~مُهَاجِر~مُهَاجَرَة","n":24,"k":"v","w":24},{"id":469,"s":38,"p":27,"en":"to see; to watch","ar":"أَبْصَرَ~يُبْصِرُ~أَبْصِرْ~مُبْصِر~إِبْصَار","n":36,"k":"v","w":36},{"id":470,"s":38,"p":27,"en":"to do good; to do excellently","ar":"أَحْسَنَ~يُحْسِنُ~أَحْسِنْ~مُحْسِن~إِحْسَان","n":72,"k":"v","w":72},{"id":471,"s":38,"p":27,"en":"to bring forth","ar":"أَخْرَجَ~يُخْرِجُ~أَخْرِجْ~مُخْرِج~إِخْرَاج","n":108,"k":"v","w":108},{"id":472,"s":38,"p":27,"en":"to make ss enter","ar":"أَدْخَلَ~يُدْخِلُ~أَدْخِلْ~مُدْخِل~إِدْخَال","n":45,"k":"v","w":45},{"id":473,"s":38,"p":27,"en":"to send back; to take back","ar":"أَرْجَعَ~يُرْجِعُ~أَرْجِعْ~مُرْجِع~إِرْجَاع","n":33,"k":"v","w":33},{"id":474,"s":38,"p":27,"en":"to send","ar":"أَرْسَلَ~يُرْسِلُ~أَرْسِلْ~مُرْسِل~إِرْسَال","n":135,"k":"v","w":135},{"id":475,"s":38,"p":27,"en":"to exceed; to be extravagant","ar":"أَسْرَفَ~يُسْرِفُ~أَسْرِفْ~مُسْرِف~إِسْرَاف","n":23,"k":"v","w":23},{"id":476,"s":38,"p":27,"en":"to submit; to surrender","ar":"أَسْلَمَ~يُسْلِمُ~أَسْلِمْ~مُسْلِم~إِسْلَام","n":72,"k":"v","w":72},{"id":477,"s":38,"p":27,"en":"to ascribe a partner","ar":"أَشْرَكَ~يُشْرِكُ~أَشْرِكْ~مُشْرِك~إِشْرَاك","n":120,"k":"v","w":120},{"id":478,"s":38,"p":27,"en":"to become","ar":"أَصْبَحَ~يُصْبِحُ~أَصْبِحْ~مُصْبِح~إِصْبَاح","n":34,"k":"v","w":34},{"id":479,"s":38,"p":27,"en":"to become good; to make good","ar":"أَصْلَحَ~يُصْلِحُ~أَصْلِحْ~مُصْلِح~إِصْلَاح","n":40,"k":"v","w":40},{"id":480,"s":39,"p":28,"en":"to turn away; to backslide","ar":"أَعْرَضَ~يُعْرِضُ~أَعْرِضْ~مُعْرِض~إِعْرَاض","n":53,"k":"v","w":53},{"id":481,"s":39,"p":28,"en":"to drown","ar":"أَغْرَقَ~يُغْرِقُ~أَغْرِقْ~مُغْرِق~إِغْرَاق","n":21,"k":"v","w":21},{"id":482,"s":39,"p":28,"en":"to spread corruption","ar":"أَفْسَدَ~يُفْسِدُ~أَفْسِدْ~مُفْسِد~إِفْسَاد","n":36,"k":"v","w":36},{"id":483,"s":39,"p":28,"en":"to be successful","ar":"أَفْلَحَ~يُفْلِحُ~أَفْلِحْ~مُفْلِح~إِفْلَاح","n":40,"k":"v","w":40},{"id":484,"s":39,"p":28,"en":"to make st grow; to cause to grow","ar":"أَنْبَتَ~يُنْبِتُ~أَنْبِتْ~مُنْبِت~إِنْبَات","n":16,"k":"v","w":16},{"id":485,"s":39,"p":28,"en":"to warn","ar":"أَنْذَرَ~يُنْذِرُ~أَنْذِرْ~مُنْذِر~إِنْذَار","n":70,"k":"v","w":70},{"id":486,"s":39,"p":28,"en":"to send down; to reveal","ar":"أَنْزَلَ~يُنْزِلُ~أَنْزِلْ~مُنْزِل~إِنْزَال","n":190,"k":"v","w":190},{"id":487,"s":39,"p":28,"en":"to produce / create; to make st grow","ar":"أَنْشَأَ~يُنْشِئُ~أَنْشِئْ~مُنْشِئ~إِنْشَاء","n":22,"k":"v","w":22},{"id":488,"s":39,"p":28,"en":"to favour; to bestow grace","ar":"أَنْعَمَ~يُنْعِمُ~أَنْعِمْ~مُنْعِم~إِنْعَام","n":17,"k":"v","w":17},{"id":489,"s":39,"p":28,"en":"to spend","ar":"أَنْفَقَ~يُنْفِقُ~أَنْفِقْ~مُنْفِق~إِنْفَاق","n":69,"k":"v","w":69},{"id":490,"s":39,"p":28,"en":"to not recognize; to deny","ar":"أَنْكَرَ~يُنْكِرُ~أَنْكِرْ~مُنْكِر~إِنْكَار","n":25,"k":"v","w":25},{"id":491,"s":39,"p":28,"en":"to destroy","ar":"أَهْلَكَ~يُهْلِكُ~أَهْلِكْ~مُهْلِك~إِهْلَاك","n":58,"k":"v","w":58},{"id":492,"s":40,"p":29,"en":"to complete","ar":"أَتَمَّ~يُتِمُّ~أَتِمَّ~مُتِمّ~إِتْمَام","n":17,"k":"v","w":17},{"id":493,"s":40,"p":29,"en":"to love","ar":"أَحَبَّ~يُحِبُّ~أَحْبِبْ~مُحِبّ~إِحْبَاب","n":64,"k":"v","w":64},{"id":494,"s":40,"p":29,"en":"to make lawful; to cause to dwell","ar":"أَحَلَّ~يُحِلُّ~أَحْلِلْ~مُحِلّ~إِحْلَال","n":21,"k":"v","w":21},{"id":495,"s":40,"p":29,"en":"to conceal; to speak secretly","ar":"أَسَرَّ~يُسِرُّ~أَسْرِرْ~مُسِرّ~إِسْرَار","n":18,"k":"v","w":18},{"id":496,"s":40,"p":29,"en":"to leave in error; to send astray","ar":"أَضَلَّ~يُضِلُّ~أَضْلِلْ~مُضِلّ~إِضْلَال","n":68,"k":"v","w":68},{"id":497,"s":40,"p":29,"en":"to prepare; to make st ready","ar":"أَعَدَّ~يُعِدُّ~أَعْدِدْ~مُعِدّ~إِعْدَاد","n":20,"k":"v","w":20},{"id":498,"s":40,"p":29,"en":"to make sb taste","ar":"أَذَاقَ~يُذِيقُ~أَذِقْ~مُذِيق~إِذَاقَة","n":22,"k":"v","w":22},{"id":499,"s":40,"p":29,"en":"to intend; to wish","ar":"أَرَادَ~يُرِيدُ~أَرِدْ~مُرِيد~إِرَادَة","n":139,"k":"v","w":139},{"id":500,"s":40,"p":29,"en":"to befall; to inflict","ar":"أَصَابَ~يُصِيبُ~أَصِبْ~مُصِيب~إِصَابَة","n":65,"k":"v","w":65},{"id":501,"s":40,"p":29,"en":"to obey","ar":"أَطَاعَ~يُطِيعُ~أَطِعْ~مُطِيع~إِطَاعَة","n":74,"k":"v","w":74},{"id":502,"s":40,"p":29,"en":"to establish; to set upright","ar":"أَقَامَ~يُقِيمُ~أَقِمْ~مُقِيم~إِقَامَة","n":67,"k":"v","w":67},{"id":503,"s":40,"p":29,"en":"to cause someone to die","ar":"أَمَاتَ~يُمِيتُ~أَمِتْ~مُمِيت~إِمَاتَة","n":21,"k":"v","w":21},{"id":504,"s":41,"p":30,"en":"to give life","ar":"أَحْيَا~يُحْيِي~أَحْيِ~مُحْيٍ~إِحْيَاء","n":53,"k":"v","w":53},{"id":505,"s":41,"p":30,"en":"to conceal","ar":"أَخْفَىٰ~يُخْفِي~أَخْفِ~مُخْفٍ~إِخْفَاء","n":18,"k":"v","w":18},{"id":506,"s":41,"p":30,"en":"to show","ar":"أَرَىٰ~يُرِي~أَرِ~مُرٍ~إِرَاءَة","n":44,"k":"v","w":44},{"id":507,"s":41,"p":30,"en":"to enrich","ar":"أَغْنَىٰ~يُغْنِي~أَغْنِ~مُغْنٍ~إِغْنَاء","n":41,"k":"v","w":41},{"id":508,"s":41,"p":30,"en":"to throw; to cast; to place","ar":"أَلْقَىٰ~يُلْقِي~أَلْقِ~مُلْقٍ~إِلْقَاء","n":71,"k":"v","w":71},{"id":509,"s":41,"p":30,"en":"to rescue; to save; to deliver","ar":"أَنْجَىٰ~يُنْجِي~أَنْجِ~مُنْجٍ~إِنْجَاء","n":23,"k":"v","w":23},{"id":510,"s":41,"p":30,"en":"to reveal; to inspire","ar":"أَوْحَىٰ~يُوحِي~أَوْحِ~مُوحٍ~إِيحَاء","n":72,"k":"v","w":72},{"id":511,"s":41,"p":30,"en":"to fulfil","ar":"أَوْفَىٰ~يُوفِي~أَوْفِ~مُوفٍ~إِيفَاء","n":18,"k":"v","w":18},{"id":512,"s":41,"p":30,"en":"to believe","ar":"آمَنَ~يُؤْمِنُ~آمِنْ~مُؤْمِن~إِيمَان","n":782,"k":"v","w":782},{"id":513,"s":41,"p":30,"en":"to give","ar":"آتَىٰ~يُؤْتِي~آتِ~مُؤْتٍ~إِيتَاء","n":274,"k":"v","w":274},{"id":514,"s":41,"p":30,"en":"to give trouble; to harm; to annoy","ar":"آذَىٰ~يُؤْذِي~آذِ~مُؤْذٍ~إِيذَاء","n":16,"k":"v","w":16},{"id":515,"s":42,"p":31,"en":"to think over; to reflect","ar":"تَفَكَّرَ~يَتَفَكَّرُ~تَفَكَّرْ~مُتَفَكِّر~تَفَكُّر","n":17,"k":"v","w":17},{"id":516,"s":42,"p":31,"en":"to receive admonition; to remember","ar":"تَذَكَّرَ~يَتَذَكَّرُ~تَذَكَّرْ~مُتَذَكِّر~تَذَكُّر","n":51,"k":"v","w":51},{"id":517,"s":42,"p":31,"en":"to put one's trust","ar":"تَوَكَّلَ~يَتَوَكَّلُ~تَوَكَّلْ~مُتَوَكِّل~تَوَكُّل","n":44,"k":"v","w":44},{"id":518,"s":42,"p":31,"en":"to become clear","ar":"تَبَيَّنَ~يَتَبَيَّنُ~تَبَيَّنْ~مُتَبَيِّن~تَبَيُّن","n":18,"k":"v","w":18},{"id":519,"s":42,"p":31,"en":"to wait and watch for opportunity","ar":"تَرَبَّصَ~يَتَرَبَّصُ~تَرَبَّصْ~مُتَرَبِّص~تَرَبُّص","n":17,"k":"v","w":17},{"id":520,"s":42,"p":31,"en":"to turn away; to take for friend","ar":"تَوَلَّىٰ~يَتَوَلَّىٰ~تَوَلَّ~مُتَوَلٍّ~تَوَلٍّ","n":79,"k":"v","w":79},{"id":521,"s":42,"p":31,"en":"to make sb die; to receive in full","ar":"تَوَفَّىٰ~يَتَوَفَّىٰ~تَوَفَّ~مُتَوَفٍّ~تَوَفٍّ","n":25,"k":"v","w":25},{"id":522,"s":43,"p":31,"en":"to be blessed or exalted","ar":"تَبَارَكَ~يَتَبَارَكُ~تَبَارَكْ~مُتَبَارِك~تَبَارُك","n":9,"k":"v","w":9},{"id":523,"s":43,"p":31,"en":"to ask each other","ar":"تَسَاءَلَ~يَتَسَاءَلُ~تَسَاءَلْ~مُتَسَاءِل~تَسَاؤُل","n":9,"k":"v","w":9},{"id":524,"s":44,"p":32,"en":"to differ","ar":"اِخْتَلَفَ~يَخْتَلِفُ~اِخْتَلِفْ~مُخْتَلِف~اِخْتِلَاف","n":52,"k":"v","w":52},{"id":525,"s":44,"p":32,"en":"to follow","ar":"اِتَّبَعَ~يَتَّبِعُ~اِتَّبِعْ~مُتَّبِع~اِتِّبَاع","n":140,"k":"v","w":140},{"id":526,"s":44,"p":32,"en":"to take; to adopt","ar":"اِتَّخَذَ~يَتَّخِذُ~اِتَّخِذْ~مُتَّخِذ~اِتِّخَاذ","n":128,"k":"v","w":128},{"id":527,"s":44,"p":32,"en":"to be on guard; to protect","ar":"اِتَّقَىٰ~يَتَّقِي~اِتَّقِ~مُتَّقٍ~اِتِّقَاء","n":215,"k":"v","w":215},{"id":528,"s":44,"p":32,"en":"to fabricate a lie","ar":"اِفْتَرَىٰ~يَفْتَرِي~اِفْتَرِ~مُفْتَرٍ~اِفْتِرَاء","n":59,"k":"v","w":59},{"id":529,"s":44,"p":32,"en":"to find or to follow the right path","ar":"اِهْتَدَىٰ~يَهْتَدِي~اِهْتَدِ~مُهْتَدٍ~اِهْتِدَاء","n":61,"k":"v","w":61},{"id":530,"s":44,"p":32,"en":"to seek","ar":"اِبْتَغَىٰ~يَبْتَغِي~اِبْتَغِ~مُبْتَغٍ~اِبْتِغَاء","n":48,"k":"v","w":48},{"id":531,"s":45,"p":32,"en":"to turn around; to return","ar":"اِنْقَلَبَ~يَنْقَلِبُ~اِنْقَلِبْ~مُنْقَلِب~اِنْقِلَاب","n":20,"k":"v","w":20},{"id":532,"s":45,"p":32,"en":"to refrain; to end","ar":"اِنْتَهَىٰ~يَنْتَهِي~اِنْتَهِ~مُنْتَهٍ~اِنْتِهَاء","n":16,"k":"v","w":16},{"id":533,"s":46,"p":33,"en":"to become black","ar":"اِسْوَدَّ~يَسْوَدُّ~اِسْوَدَّ~مُسْوَدّ~اِسْوِدَاد","n":3,"k":"v","w":3},{"id":534,"s":46,"p":33,"en":"to become white","ar":"اِبْيَضَّ~يَبْيَضُّ~اِبْيَضَّ~مُبْيَضّ~اِبْيِضَاض","n":3,"k":"v","w":3},{"id":535,"s":47,"p":33,"en":"to seek ss to hasten","ar":"اِسْتَعْجَلَ~يَسْتَعْجِلُ~اِسْتَعْجِلْ~مُسْتَعْجِل~اِسْتِعْجَال","n":20,"k":"v","w":20},{"id":536,"s":47,"p":33,"en":"to ask forgiveness","ar":"اِسْتَغْفَرَ~يَسْتَغْفِرُ~اِسْتَغْفِرْ~مُسْتَغْفِر~اِسْتِغْفَار","n":42,"k":"v","w":42},{"id":537,"s":47,"p":33,"en":"to act arrogantly","ar":"اِسْتَكْبَرَ~يَسْتَكْبِرُ~اِسْتَكْبِرْ~مُسْتَكْبِر~اِسْتِكْبَار","n":48,"k":"v","w":48},{"id":538,"s":47,"p":33,"en":"to mock at","ar":"اِسْتَهْزَأَ~يَسْتَهْزِئُ~اِسْتَهْزِئْ~مُسْتَهْزِئ~اِسْتِهْزَاء","n":23,"k":"v","w":23},{"id":539,"s":47,"p":33,"en":"to accept; to respond","ar":"اِسْتَجَابَ~يَسْتَجِيبُ~اِسْتَجِبْ~مُسْتَجِيب~اِسْتِجَابَة","n":28,"k":"v","w":28},{"id":540,"s":47,"p":33,"en":"to be able to","ar":"اِسْتَطَاعَ~يَسْتَطِيعُ~اِسْتَطِعْ~مُسْتَطِيع~اِسْتِطَاعَة","n":42,"k":"v","w":42},{"id":541,"s":47,"p":33,"en":"to be straight; to act straight","ar":"اِسْتَقَامَ~يَسْتَقِيمُ~اِسْتَقِمْ~مُسْتَقِيم~اِسْتِقَامَة","n":47,"k":"v","w":47},{"id":542,"s":48,"p":34,"en":"went forth; strove","ar":"ضَرَبَ فِي","n":0,"k":"w","w":0},{"id":543,"s":48,"p":34,"en":"mentioned","ar":"ضَرَبَ لِ","n":0,"k":"w","w":0},{"id":544,"s":48,"p":34,"en":"struck upon; overshadowed","ar":"ضَرَبَ عَلَىٰ","n":0,"k":"w","w":0},{"id":545,"s":48,"p":34,"en":"gave example","ar":"ضَرَبَ مَثَلًا","n":0,"k":"w","w":0},{"id":546,"s":48,"p":34,"en":"abound","ar":"عَفَا","n":0,"k":"w","w":0},{"id":547,"s":48,"p":34,"en":"forgave","ar":"عَفَا عَنْ","n":0,"k":"w","w":0},{"id":548,"s":48,"p":34,"en":"decreed; fulfilled","ar":"قَضَىٰ","n":0,"k":"w","w":0},{"id":549,"s":48,"p":34,"en":"judged","ar":"قَضَىٰ بَيْنَ","n":0,"k":"w","w":0},{"id":550,"s":48,"p":34,"en":"killed","ar":"قَضَىٰ عَلَىٰ","n":0,"k":"w","w":0},{"id":551,"s":48,"p":34,"en":"put; laid down","ar":"وَضَعَ","n":0,"k":"w","w":0},{"id":552,"s":48,"p":34,"en":"removed","ar":"وَضَعَ عَنْ","n":0,"k":"w","w":0},{"id":553,"s":48,"p":34,"en":"turned; caused to turn","ar":"وَلَّىٰ","n":0,"k":"w","w":0},{"id":554,"s":48,"p":34,"en":"turned to","ar":"وَلَّىٰ إِلَىٰ","n":0,"k":"w","w":0},{"id":555,"s":48,"p":34,"en":"turned away from","ar":"وَلَّىٰ عَنْ","n":0,"k":"w","w":0},{"id":556,"s":48,"p":34,"en":"came","ar":"أَتَىٰ","n":0,"k":"w","w":0},{"id":557,"s":48,"p":34,"en":"brought","ar":"أَتَىٰ بِ","n":0,"k":"w","w":0},{"id":558,"s":48,"p":34,"en":"sought","ar":"بَغَىٰ","n":0,"k":"w","w":0},{"id":559,"s":48,"p":34,"en":"oppressed; was unjust","ar":"بَغَىٰ عَلَىٰ","n":0,"k":"w","w":0},{"id":560,"s":48,"p":34,"en":"repented","ar":"تَابَ، تَابَ إِلَىٰ","n":0,"k":"w","w":0},{"id":561,"s":48,"p":34,"en":"accepted the repentance","ar":"تَابَ عَلَىٰ","n":0,"k":"w","w":0},{"id":562,"s":48,"p":34,"en":"came, arrived","ar":"جَاءَ","n":0,"k":"w","w":0},{"id":563,"s":48,"p":34,"en":"brought","ar":"جَاءَ بِ","n":0,"k":"w","w":0},{"id":564,"s":48,"p":34,"en":"went","ar":"ذَهَبَ","n":0,"k":"w","w":0},{"id":565,"s":48,"p":34,"en":"took away","ar":"ذَهَبَ بِ","n":0,"k":"w","w":0},{"id":566,"s":48,"p":34,"en":"went away","ar":"ذَهَبَ عَنْ","n":0,"k":"w","w":0},{"id":567,"s":48,"p":34,"en":"was contented","ar":"رَضِيَ","n":0,"k":"w","w":0},{"id":568,"s":48,"p":34,"en":"pleased with","ar":"رَضِيَ عَنْ","n":0,"k":"w","w":0},{"id":569,"s":48,"p":34,"en":"stroke","ar":"ضَرَبَ","n":0,"k":"w","w":0},{"id":570,"s":49,"p":35,"en":"he — He did / He does, will do","ar":"فَعَلَ~يَفْعَلُ","n":0,"k":"c","w":0},{"id":571,"s":49,"p":35,"en":"they two — They two did / They two do, will do","ar":"فَعَلَا~يَفْعَلَانِ","n":0,"k":"c","w":0},{"id":572,"s":49,"p":35,"en":"they all — They all did / They do, will do","ar":"فَعَلُوا~يَفْعَلُونَ","n":0,"k":"c","w":0},{"id":573,"s":49,"p":35,"en":"you — You did / You do, will do","ar":"فَعَلْتَ~تَفْعَلُ","n":0,"k":"c","w":0},{"id":574,"s":49,"p":35,"en":"you two — You two did / You two do, will do","ar":"فَعَلْتُمَا~تَفْعَلَانِ","n":0,"k":"c","w":0},{"id":575,"s":49,"p":35,"en":"you all — You all did / You all do, will do","ar":"فَعَلْتُمْ~تَفْعَلُونَ","n":0,"k":"c","w":0},{"id":576,"s":49,"p":35,"en":"I — I did / I do, will do","ar":"فَعَلْتُ~أَفْعَلُ","n":0,"k":"c","w":0},{"id":577,"s":49,"p":35,"en":"we — We did / We do, will do","ar":"فَعَلْنَا~نَفْعَلُ","n":0,"k":"c","w":0},{"id":578,"s":50,"p":37,"en":"she — She did / She does, will do","ar":"فَعَلَتْ~تَفْعَلُ","n":0,"k":"c","w":0},{"id":579,"s":50,"p":37,"en":"they two (fg) — They two did / They two do, will do","ar":"فَعَلَتَا~تَفْعَلَانِ","n":0,"k":"c","w":0},{"id":580,"s":50,"p":37,"en":"they all (fg) — They all did / They do, will do","ar":"فَعَلْنَ~يَفْعَلْنَ","n":0,"k":"c","w":0},{"id":581,"s":50,"p":37,"en":"you (fg) — You did / You do, will do","ar":"فَعَلْتِ~تَفْعَلِينَ","n":0,"k":"c","w":0},{"id":582,"s":50,"p":37,"en":"you two (fg) — You two did / You two do, will do","ar":"فَعَلْتُمَا~تَفْعَلَانِ","n":0,"k":"c","w":0},{"id":583,"s":50,"p":37,"en":"you all (fg) — You all did / You all do, will do","ar":"فَعَلْتُنَّ~تَفْعَلْنَ","n":0,"k":"c","w":0},{"id":584,"s":50,"p":37,"en":"I (fg) — I did / I do, will do","ar":"فَعَلْتُ~أَفْعَلُ","n":0,"k":"c","w":0},{"id":585,"s":50,"p":37,"en":"we (fg) — We did / We do, will do","ar":"فَعَلْنَا~نَفْعَلُ","n":0,"k":"c","w":0},{"id":586,"s":51,"p":36,"en":"Do! (singular)","ar":"اِفْعَلْ","n":0,"k":"w","w":0},{"id":587,"s":51,"p":36,"en":"Do! (you two)","ar":"اِفْعَلَا","n":0,"k":"w","w":0},{"id":588,"s":51,"p":36,"en":"Do! (you all)","ar":"اِفْعَلُوا","n":0,"k":"w","w":0},{"id":589,"s":51,"p":36,"en":"Don't do! (singular)","ar":"لَا تَفْعَلْ","n":0,"k":"w","w":0},{"id":590,"s":51,"p":36,"en":"Don't do! (you two)","ar":"لَا تَفْعَلَا","n":0,"k":"w","w":0},{"id":591,"s":51,"p":36,"en":"Don't do! (you all)","ar":"لَا تَفْعَلُوا","n":0,"k":"w","w":0},{"id":592,"s":51,"p":36,"en":"(it) is done — passive past","ar":"فُعِلَ","n":0,"k":"w","w":0},{"id":593,"s":51,"p":36,"en":"(it) is being done — passive present","ar":"يُفْعَلُ","n":0,"k":"w","w":0},{"id":594,"s":51,"p":36,"en":"Doer — active participle (singular)","ar":"فَاعِل","n":0,"k":"w","w":0},{"id":595,"s":51,"p":36,"en":"Active participle (dual)","ar":"فَاعِلَانِ، فَاعِلَيْنِ","n":0,"k":"w","w":0},{"id":596,"s":51,"p":36,"en":"Active participle (plural)","ar":"فَاعِلُونَ، فَاعِلِينَ","n":0,"k":"w","w":0},{"id":597,"s":51,"p":36,"en":"The one who is affected — passive participle (singular)","ar":"مَفْعُول","n":0,"k":"w","w":0},{"id":598,"s":51,"p":36,"en":"Passive participle (dual)","ar":"مَفْعُولَانِ، مَفْعُولَيْنِ","n":0,"k":"w","w":0},{"id":599,"s":51,"p":36,"en":"Passive participle (plural)","ar":"مَفْعُولُونَ، مَفْعُولِينَ","n":0,"k":"w","w":0},{"id":600,"s":51,"p":36,"en":"action; act of doing — noun of action","ar":"فِعْل ...","n":0,"k":"w","w":0},{"id":601,"s":52,"p":38,"en":"Do! (singular, fg)","ar":"اِفْعَلِي","n":0,"k":"w","w":0},{"id":602,"s":52,"p":38,"en":"Do! (you two, fg)","ar":"اِفْعَلَا","n":0,"k":"w","w":0},{"id":603,"s":52,"p":38,"en":"Do! (you all, fg)","ar":"اِفْعَلْنَ","n":0,"k":"w","w":0},{"id":604,"s":52,"p":38,"en":"Don't do! (singular, fg)","ar":"لَا تَفْعَلِي","n":0,"k":"w","w":0},{"id":605,"s":52,"p":38,"en":"Don't do! (you two, fg)","ar":"لَا تَفْعَلَا","n":0,"k":"w","w":0},{"id":606,"s":52,"p":38,"en":"Don't do! (you all, fg)","ar":"لَا تَفْعَلْنَ","n":0,"k":"w","w":0},{"id":607,"s":52,"p":38,"en":"(it) is done — passive past (fg)","ar":"فُعِلَتْ","n":0,"k":"w","w":0},{"id":608,"s":52,"p":38,"en":"(it) is being done — passive present (fg)","ar":"تُفْعَلُ","n":0,"k":"w","w":0},{"id":609,"s":52,"p":38,"en":"Doer — active participle (singular, fg)","ar":"فَاعِلَة","n":0,"k":"w","w":0},{"id":610,"s":52,"p":38,"en":"Active participle (dual, fg)","ar":"فَاعِلَتَانِ، فَاعِلَتَيْنِ","n":0,"k":"w","w":0},{"id":611,"s":52,"p":38,"en":"Active participle (plural, fg)","ar":"فَاعِلَات","n":0,"k":"w","w":0},{"id":612,"s":52,"p":38,"en":"The one who is affected — passive participle (singular, fg)","ar":"مَفْعُولَة","n":0,"k":"w","w":0},{"id":613,"s":52,"p":38,"en":"Passive participle (dual, fg)","ar":"مَفْعُولَتَانِ، مَفْعُولَتَيْنِ","n":0,"k":"w","w":0},{"id":614,"s":52,"p":38,"en":"Passive participle (plural, fg)","ar":"مَفْعُولَات","n":0,"k":"w","w":0}]};
+/* ---------- storage ---------- */
+const KEY='qwords.v1';
+let S={known:{},star:{},srs:{},hist:[],edits:{},custom:[],cfg:{theme:'auto',arsize:1,dir:'mix',goal:10},day:{d:'',n:0},streak:{last:'',n:0},best:{}};
+try{const r=localStorage.getItem(KEY);if(r)S=Object.assign(S,JSON.parse(r));}catch(e){}
+S.cfg=Object.assign({theme:'auto',arsize:1,dir:'mix',goal:10},S.cfg);
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+/* ---------- helpers ---------- */
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const today=()=>new Date().toISOString().slice(0,10);
+const DAY=864e5, IV=[0,1,2,4,8,16,32];
+const CUSTOM_SEC=DB.secs.length;
+const secs=DB.secs.concat([{id:CUSTOM_SEC,t:'My own cards',p:0,g:'My cards'}]);
+function allCards(){
+  const base=DB.cards.map(c=>{const e=S.edits[c.id];return e?Object.assign({},c,e):c});
+  return base.concat(S.custom.map(c=>Object.assign({k:'w',n:0,w:0,s:CUSTOM_SEC,p:0},c)));
+}
+let CARDS=allCards(); const rebuild=()=>{CARDS=allCards()};
+const byId=id=>CARDS.find(c=>c.id===id);
+const forms=c=>c.ar.split('~');
+const arMain=c=>c.k==='w'?c.ar:forms(c)[0];
+const arFull=c=>c.k==='w'?c.ar:forms(c).join('  •  ');
+const FL={v:['Past','Present','Command','Doer','Noun'],c:['Past','Present']};
+function formsHTML(c){
+  if(c.k==='w')return `<div class="ar" style="font-size:calc(40px*var(--arsize))">${esc(c.ar)}</div>`;
+  const f=forms(c),L=FL[c.k]||[];
+  return `<table class="forms">${f.map((x,i)=>`<tr><td>${L[i]||''}</td><td class="ar">${esc(x)}</td></tr>`).join('')}</table>`;
+}
+const isKnown=id=>!!S.known[id]||(S.srs[id]&&S.srs[id].box>=3);
+const isDue=id=>S.srs[id]&&S.srs[id].due<=Date.now();
+const grpOf=c=>secs[c.s].g;
+function speak(t){try{const u=new SpeechSynthesisUtterance(t);u.lang='ar-SA';u.rate=.8;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+function touchDay(){const t=today();if(S.day.d!==t)S.day={d:t,n:0};S.day.n++;
+  if(S.streak.last!==t){const y=new Date(Date.now()-DAY).toISOString().slice(0,10);S.streak.n=S.streak.last===y?S.streak.n+1:1;S.streak.last=t}}
+function rate(id,q){ // q:0 again,1 good,2 easy
+  const r=S.srs[id]||(S.srs[id]={box:0,due:0,wrong:0,seen:0});r.seen++;
+  if(q===0){r.box=0;r.wrong++;r.due=Date.now()+6e5}
+  else{r.box=Math.min(6,r.box+(q===2?2:1));r.due=Date.now()+IV[r.box]*DAY;if(r.box>=3)delete S.known[id]}
+  touchDay();save();
+}
+function toast(m){const t=document.createElement('div');t.textContent=m;t.style.cssText='position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;z-index:99;font-weight:600';document.body.append(t);setTimeout(()=>t.remove(),1800)}
+/* ---------- stats ---------- */
+const TOTAL_Q=77800;
+function stats(){
+  let known=0,learning=0,w=0,due=0,fresh=0;
+  for(const c of CARDS){const k=isKnown(c.id);if(k){known++;w+=c.w||0}else if(S.srs[c.id])learning++;else fresh++;if(isDue(c.id))due++}
+  return{known,learning,fresh,w,due,total:CARDS.length,pct:w/TOTAL_Q*100};
+}
+/* ---------- router ---------- */
+const TABS=[['home','Home'],['browse','Browse'],['cards','Cards'],['exam','Exam'],['match','Match'],['book','Book']];
+let tab='home';
+function go(t){tab=t;location.hash=t;render()}
+function drawNav(){$('#nav').innerHTML=TABS.map(([k,l])=>`<button data-t="${k}" class="${tab===k?'on':''}">${l}</button>`).join('');$$('#nav button').forEach(b=>b.onclick=()=>go(b.dataset.t))}
+function render(){
+  const h=location.hash.slice(1);if(TABS.some(t=>t[0]===h))tab=h;
+  drawNav();cleanup();({home,browse,cards,exam,match,book})[tab]();window.scrollTo(0,0);
+}
+let cleanup=()=>{}; const setClean=f=>{cleanup=f};
+document.addEventListener('keydown',e=>{if(kbd)kbd(e)}); let kbd=null;
+function applyTheme(){const t=S.cfg.theme;if(t==='auto')document.documentElement.removeAttribute('data-theme');else document.documentElement.setAttribute('data-theme',t);document.documentElement.style.setProperty('--arsize',S.cfg.arsize)}
+/* ---------- scope picker ---------- */
+const SC={};
+function scopeUI(id,opts={}){
+  const st=SC[id]||(SC[id]={g:new Set(),s:new Set(),f:opts.f||'all'});
+  const groups=['Particles & Pronouns','Nouns & Attributes','Verbs','Verb Grammar'].concat(S.custom.length?['My cards']:[]);
+  return `<div id="sc-${id}">
+   <label class="f">What to include</label>
+   <div class="row" style="gap:6px">${groups.map(g=>`<button class="chip ${st.g.has(g)?'on':''}" data-g="${esc(g)}">${g}</button>`).join('')}
+     <button class="chip ${!st.g.size&&!st.s.size?'on':''}" data-all="1">Everything</button></div>
+   <details class="scope" ${st.s.size?'open':''}><summary>Pick specific lists (${st.s.size||'all'})</summary>
+     <div class="secs">${secs.filter(s=>s.g!=='My cards'||S.custom.length).map(s=>`<label><input type="checkbox" data-s="${s.id}" ${st.s.has(s.id)?'checked':''}> ${esc(s.t)} <span class="mute small">${s.p?'p.'+s.p:''}</span></label>`).join('')}</div></details>
+   <label class="f">Which cards</label>
+   <select data-f>${[['all','All cards'],['due','Due for review'],['new','New (never studied)'],['unknown','Not yet known'],['weak','Weak (I got these wrong)'],['star','Starred ★'],['known','Already known']].map(([v,l])=>`<option value="${v}" ${st.f===v?'selected':''}>${l}</option>`).join('')}</select>
+  </div>`;
+}
+function bindScope(id,after){
+  const root=$('#sc-'+id),st=SC[id];
+  $$('[data-g]',root).forEach(b=>b.onclick=()=>{st.g.has(b.dataset.g)?st.g.delete(b.dataset.g):st.g.add(b.dataset.g);rerenderScope()});
+  $$('[data-all]',root).forEach(b=>b.onclick=()=>{st.g.clear();st.s.clear();rerenderScope()});
+  $$('[data-s]',root).forEach(b=>b.onchange=()=>{const n=+b.dataset.s;b.checked?st.s.add(n):st.s.delete(n);$('summary',root).textContent=`Pick specific lists (${st.s.size||'all'})`;after&&after()});
+  $('[data-f]',root).onchange=e=>{st.f=e.target.value;after&&after()};
+  function rerenderScope(){const keep=$('details',root).open;root.outerHTML=scopeUI(id);bindScope(id,after);if(keep)$('#sc-'+id+' details').open=true;after&&after()}
+}
+function scopeCards(id){
+  const st=SC[id]||{g:new Set(),s:new Set(),f:'all'};
+  return CARDS.filter(c=>{
+    if(st.s.size&&!st.s.has(c.s))return false;
+    if(!st.s.size&&st.g.size&&!st.g.has(grpOf(c)))return false;
+    const r=S.srs[c.id];
+    switch(st.f){case'due':return isDue(c.id);case'new':return !r;case'unknown':return !isKnown(c.id);
+      case'weak':return r&&r.wrong>0&&r.box<3;case'star':return !!S.star[c.id];case'known':return isKnown(c.id)}
+    return true;
+  });
+}
+/* ---------- HOME ---------- */
+function home(){
+  const s=stats(),secP=secs.map(x=>{const cs=CARDS.filter(c=>c.s===x.id);return{x,n:cs.length,k:cs.filter(c=>isKnown(c.id)).length}}).filter(r=>r.n);
+  const t=today(),doneToday=S.day.d===t?S.day.n:0,goal=S.cfg.goal;
+  $('#app').innerHTML=`
+  <div class="card"><div class="grid g2" style="align-items:center">
+    <div><h2>Welcome back 👋</h2>
+      <p class="mute" style="margin-top:0">Learn the words that make up ~80% of the Qur'an. Study a little every day — the app schedules reviews for you.</p>
+      <div class="row">
+        <button class="btn" id="b-due" ${s.due?'':'disabled'}>Review due (${s.due})</button>
+        <button class="btn sec" id="b-new">Learn new words</button>
+        <button class="btn sec" id="b-exam">Quick exam</button>
+      </div>
+      <p class="small mute" style="margin-bottom:0">Today: <b>${doneToday}</b>/${goal} reviews · 🔥 streak <b>${S.streak.last===t||S.streak.last===new Date(Date.now()-DAY).toISOString().slice(0,10)?S.streak.n:0}</b> days</p>
+      <div class="bar2" style="margin-top:6px"><i style="width:${Math.min(100,doneToday/goal*100)}%"></i></div>
+    </div>
+    <div><div class="ring" style="--p:${Math.min(100,s.pct/82.6*100).toFixed(1)}"><div><span>${s.pct.toFixed(1)}%<small>of Qur'an words</small></span></div></div>
+      <p class="small mute" style="text-align:center;margin:8px 0 0">Max from this book ≈ 82.6%</p></div>
+  </div></div>
+  <div class="grid g4" style="margin-bottom:14px">
+    <div class="card stat"><b>${s.total}</b><span>total cards</span></div>
+    <div class="card stat"><b style="color:var(--ok)">${s.known}</b><span>known</span></div>
+    <div class="card stat"><b style="color:var(--gold)">${s.learning}</b><span>learning</span></div>
+    <div class="card stat"><b>${s.fresh}</b><span>not started</span></div>
+  </div>
+  <div class="card"><h2>Progress by list</h2>
+    ${secP.map(r=>`<div style="margin:9px 0"><div class="row small"><span>${esc(r.x.t)}</span><span class="sp"></span><span class="mute">${r.k}/${r.n}</span></div><div class="bar2"><i style="width:${r.k/r.n*100}%"></i></div></div>`).join('')}
+  </div>
+  <div class="grid g2">
+   <div class="card"><h2>Recent exams</h2>
+    ${S.hist.length?S.hist.slice(0,6).map(h=>`<div class="row small" style="padding:4px 0;border-top:1px solid var(--line)"><b>${h.score}/${h.total}</b><span class="mute">${Math.round(h.score/h.total*100)}%</span><span class="sp"></span><span class="mute">${new Date(h.t).toLocaleDateString()}</span></div>`).join(''):'<p class="mute">No exams yet. Try one from the Exam tab.</p>'}
+   </div>
+   <div class="card"><h2>Settings & backup</h2>
+    <label class="f">Theme</label><select id="s-theme"><option value="auto">Match my device</option><option value="light">Light</option><option value="dark">Dark</option></select>
+    <label class="f">Arabic text size</label><input type="range" id="s-ar" min="0.8" max="1.6" step="0.1" value="${S.cfg.arsize}">
+    <label class="f">Daily review goal</label><input type="number" id="s-goal" min="1" max="500" value="${goal}">
+    <div class="row" style="margin-top:12px">
+      <button class="btn sm sec" id="s-exp">Export progress</button>
+      <label class="btn sm sec" style="margin:0">Import<input type="file" id="s-imp" accept=".json" hidden></label>
+      <button class="btn sm ghost" id="s-reset">Reset</button></div>
+    <p class="small mute">Progress is saved in this browser. Export a backup to move it to another device.</p>
+   </div>
+  </div>
+  <div class="card"><h2>How to use this book</h2>
+   <ul style="margin:0;padding-left:20px" class="small">
+    <li>Words are grouped like the book: particles & pronouns → nouns & attributes → verbs → grammar tables.</li>
+    <li><b>Cards</b> uses spaced repetition: cards you get wrong come back soon, cards you know come back later.</li>
+    <li><b>Exam</b> tests you with multiple choice, typing or true/false, then shows your mistakes.</li>
+    <li>Verb cards show all 5 forms: <b>past, present, command, doer, noun</b>.</li>
+    <li><b>Book</b> shows the original scanned pages, so you can check any word against the source.</li>
+    <li>Abbreviations: mg masculine · fg feminine · br. pl broken plural · dl dual · pl plural · sb somebody · st something · ss somebody or something.</li>
+   </ul></div>`;
+  $('#b-due').onclick=()=>{SC.cards={g:new Set(),s:new Set(),f:'due'};go('cards')};
+  $('#b-new').onclick=()=>{SC.cards={g:new Set(),s:new Set(),f:'new'};go('cards')};
+  $('#b-exam').onclick=()=>go('exam');
+  $('#s-theme').value=S.cfg.theme;
+  $('#s-theme').onchange=e=>{S.cfg.theme=e.target.value;save();applyTheme()};
+  $('#s-ar').oninput=e=>{S.cfg.arsize=+e.target.value;save();applyTheme()};
+  $('#s-goal').onchange=e=>{S.cfg.goal=Math.max(1,+e.target.value||10);save();home()};
+  $('#s-exp').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));a.download='quranic-words-progress.json';a.click()};
+  $('#s-imp').onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(t=>{try{S=Object.assign(S,JSON.parse(t));save();rebuild();applyTheme();toast('Progress imported');home()}catch(x){toast('Invalid file')}})};
+  $('#s-reset').onclick=()=>{if(confirm('Erase all progress, stars, edits and custom cards?')){const c=S.cfg;S={known:{},star:{},srs:{},hist:[],edits:{},custom:[],cfg:c,day:{d:'',n:0},streak:{last:'',n:0},best:{}};save();rebuild();home()}};
+}
+/* ---------- BROWSE ---------- */
+let bq='',bf='all';
+function browse(){
+  $('#app').innerHTML=`<div class="card"><div class="row">
+    <input type="search" id="q" placeholder="Search English or Arabic…" value="${esc(bq)}" style="flex:2;min-width:180px">
+    <select id="bf" style="flex:1;min-width:140px">${[['all','All'],['star','Starred ★'],['known','Known'],['unknown','Not known'],['weak','Weak']].map(([v,l])=>`<option value="${v}" ${bf===v?'selected':''}>${l}</option>`).join('')}</select>
+    <button class="btn sm sec" id="addc">+ Add card</button></div>
+    <p class="small mute" style="margin-bottom:0" id="bcount"></p></div><div id="blist"></div>`;
+  $('#q').oninput=e=>{bq=e.target.value;drawList()};$('#bf').onchange=e=>{bf=e.target.value;drawList()};
+  $('#addc').onclick=()=>editDialog(null);
+  drawList();
+}
+const strip=s=>s.replace(/[ً-ٰٟۖ-ۭـ]/g,'');
+function drawList(){
+  const q=bq.trim().toLowerCase(),qa=strip(bq.trim());let n=0;
+  const m=c=>{
+    if(q&&!(c.en.toLowerCase().includes(q)||strip(c.ar).includes(qa)))return false;
+    const r=S.srs[c.id];
+    if(bf==='star')return !!S.star[c.id];if(bf==='known')return isKnown(c.id);if(bf==='unknown')return !isKnown(c.id);
+    if(bf==='weak')return r&&r.wrong>0&&r.box<3;return true};
+  const html=secs.map(s=>{
+    const cs=CARDS.filter(c=>c.s===s.id&&m(c));if(!cs.length)return'';n+=cs.length;
+    return `<details class="card" ${q||bf!=='all'?'open':''} style="padding:8px 14px"><summary class="sec-h">${esc(s.t)}<span class="mute small">${s.p?'· p.'+s.p:''} · ${cs.length}</span></summary>
+     ${cs.map(c=>`<div class="item" data-id="${c.id}"><button class="star ${S.star[c.id]?'on':''}" data-star="${c.id}" title="Star">★</button>
+       <div>${esc(c.en)}${c.n?` <span class="mute small">· ${c.n}×</span>`:''}</div><div class="ar">${esc(arMain(c))}</div><span class="dot ${isKnown(c.id)?'k':S.srs[c.id]?'l':''}" title="${isKnown(c.id)?'known':S.srs[c.id]?'learning':'new'}"></span></div>`).join('')}</details>`}).join('');
+  $('#blist').innerHTML=html||'<div class="card mute">Nothing matches.</div>';
+  $('#bcount').textContent=`${n} cards shown`;
+  $$('.item').forEach(i=>i.onclick=e=>{if(e.target.dataset.star)return;detail(+i.dataset.id)});
+  $$('[data-star]').forEach(b=>b.onclick=()=>{const id=+b.dataset.star;S.star[id]?delete S.star[id]:S.star[id]=1;save();b.classList.toggle('on')});
+}
+function detail(id){
+  const c=byId(id),d=$('#dlg');
+  d.innerHTML=`<div class="row"><b>${esc(secs[c.s].t)}</b><span class="sp"></span><button class="btn sm ghost" id="d-x">✕</button></div>
+   <div style="text-align:center;margin:10px 0"><div class="big-en" style="font-size:24px">${esc(c.en)}</div>${formsHTML(c)}
+   <p class="small mute">${c.n?`Appears <b>${c.n}</b> times in the Qur'an · `:''}${c.p?`Book page ${c.p}`:'Your own card'}</p></div>
+   <div class="row" style="justify-content:center">
+    <button class="btn sm sec" id="d-sp">🔊 Hear</button>
+    <button class="btn sm sec" id="d-st">${S.star[id]?'★ Unstar':'☆ Star'}</button>
+    <button class="btn sm sec" id="d-kn">${isKnown(id)?'Mark not known':'✓ Mark known'}</button>
+    <button class="btn sm ghost" id="d-ed">Edit</button>
+    ${c.p?`<button class="btn sm ghost" id="d-bk">See in book</button>`:`<button class="btn sm bad" id="d-del">Delete</button>`}</div>`;
+  d.showModal();
+  $('#d-x').onclick=()=>d.close();
+  $('#d-sp').onclick=()=>speak(arMain(c));
+  $('#d-st').onclick=()=>{S.star[id]?delete S.star[id]:S.star[id]=1;save();d.close();rerenderCurrent()};
+  $('#d-kn').onclick=()=>{if(isKnown(id)){delete S.known[id];if(S.srs[id])S.srs[id].box=0}else S.known[id]=1;save();d.close();rerenderCurrent()};
+  $('#d-ed').onclick=()=>{d.close();editDialog(c)};
+  if($('#d-bk'))$('#d-bk').onclick=()=>{d.close();bookPage=c.p+7;go('book')};
+  if($('#d-del'))$('#d-del').onclick=()=>{S.custom=S.custom.filter(x=>x.id!==id);save();rebuild();d.close();rerenderCurrent()};
+}
+function rerenderCurrent(){if(tab==='browse')drawList();else if(tab==='home')home()}
+function editDialog(c){
+  const d=$('#dlg'),isNew=!c;
+  d.innerHTML=`<h2>${isNew?'Add your own card':'Edit card'}</h2>
+   <label class="f">English</label><input type="text" id="e-en" value="${esc(c?c.en:'')}">
+   <label class="f">Arabic${c&&c.k!=='w'?' (forms separated by ~ : '+(FL[c.k]||[]).join(' ~ ')+')':''}</label><input type="text" id="e-ar" class="ar" style="font-size:24px" dir="rtl" value="${esc(c?c.ar:'')}">
+   <div class="row" style="margin-top:14px"><button class="btn" id="e-ok">Save</button><button class="btn ghost" id="e-no">Cancel</button>
+   ${!isNew&&S.edits[c.id]?'<button class="btn sm ghost" id="e-rs">Restore original</button>':''}</div>`;
+  d.showModal();
+  $('#e-no').onclick=()=>d.close();
+  if($('#e-rs'))$('#e-rs').onclick=()=>{delete S.edits[c.id];save();rebuild();d.close();rerenderCurrent()};
+  $('#e-ok').onclick=()=>{
+    const en=$('#e-en').value.trim(),ar=$('#e-ar').value.trim();if(!en||!ar){toast('Fill both fields');return}
+    if(isNew){S.custom.push({id:1e6+Date.now()%1e9+Math.floor(Math.random()*1000),en,ar})}
+    else if(c.s===CUSTOM_SEC){const x=S.custom.find(z=>z.id===c.id);x.en=en;x.ar=ar}
+    else S.edits[c.id]={en,ar};
+    save();rebuild();d.close();rerenderCurrent();if(tab==='browse')drawList()};
+}
+/* ---------- FLASHCARDS ---------- */
+let F=null;
+function cards(){
+  if(F&&F.run){return fcShow()}
+  $('#app').innerHTML=`<div class="card"><h2>Flashcards</h2>
+   ${scopeUI('cards')}
+   <div class="grid g2"><div><label class="f">Show first</label><select id="f-dir"><option value="en">English → guess Arabic</option><option value="ar">Arabic → guess English</option><option value="mix">Mixed</option></select></div>
+   <div><label class="f">Order</label><select id="f-ord"><option value="smart">Smart (due first, then new)</option><option value="rand">Shuffle</option><option value="book">Book order</option></select></div></div>
+   <label class="f">Session size: <b id="f-nv">20</b></label><input type="range" id="f-n" min="5" max="100" step="5" value="20">
+   <div class="row" style="margin-top:14px"><button class="btn" id="f-go">Start</button><span class="mute small" id="f-avail"></span></div></div>`;
+  $('#f-dir').value=S.cfg.dir;
+  const upd=()=>{$('#f-avail').textContent=scopeCards('cards').length+' cards match'};
+  bindScope('cards',upd);upd();
+  $('#f-n').oninput=e=>$('#f-nv').textContent=e.target.value;
+  $('#f-go').onclick=()=>{
+    let cs=scopeCards('cards');if(!cs.length){toast('No cards match — change the filter');return}
+    const ord=$('#f-ord').value;S.cfg.dir=$('#f-dir').value;save();
+    if(ord==='rand')cs=shuffle(cs);
+    else if(ord==='smart'){const rk=c=>isDue(c.id)?0:!S.srs[c.id]?1:2;cs=shuffle(cs).sort((a,b)=>rk(a)-rk(b))}
+    cs=cs.slice(0,+$('#f-n').value);
+    F={run:true,q:cs.map(c=>c.id),i:0,flip:false,dir:S.cfg.dir,total:cs.length,again:0,good:0,flips:{}};fcShow();
+  };
+}
+function fcFront(c){const k=F.flips[c.id]||(F.flips[c.id]=F.dir==='mix'?(Math.random()<.5?'en':'ar'):F.dir);return k}
+function fcShow(){
+  if(F.i>=F.q.length){
+    $('#app').innerHTML=`<div class="card" style="text-align:center"><h2>Session complete 🎉</h2><p>You went through <b>${F.total}</b> cards.<br>Got right: <b style="color:var(--ok)">${F.good}</b> · Needed another look: <b style="color:var(--bad)">${F.again}</b></p>
+     <div class="row" style="justify-content:center"><button class="btn" id="f-again">Another session</button><button class="btn sec" id="f-home">Home</button></div></div>`;
+    F=null;kbd=null;$('#f-again').onclick=cards;$('#f-home').onclick=()=>go('home');return}
+  const c=byId(F.q[F.i]);if(!c){F.i++;return fcShow()}
+  const front=fcFront(c),ar=front==='ar';
+  const faceA=ar?`<div class="big-ar ar">${esc(arMain(c))}</div>`:`<div class="big-en">${esc(c.en)}</div>`;
+  const faceB=ar?`<div class="big-en">${esc(c.en)}</div>${c.k==='w'?'':formsHTML(c)}`:`${formsHTML(c)}`;
+  $('#app').innerHTML=`<div class="row small mute"><span>${F.i+1} / ${F.q.length}</span><div class="bar2 sp"><i style="width:${F.i/F.q.length*100}%"></i></div><button class="btn sm ghost" id="f-quit">End</button></div>
+   <div class="fc ${F.flip?'flip':''}" id="fc"><div class="fc-in" id="fci">
+    <div class="face"><span class="tag">${esc(secs[c.s].t)}</span><span class="tagr">${S.srs[c.id]?'box '+S.srs[c.id].box:'new'}</span>${faceA}<p class="small mute" style="position:absolute;bottom:10px">tap to flip · space</p></div>
+    <div class="face back"><span class="tag">${c.p?'Book p.'+c.p:'My card'}</span><span class="tagr">${c.n?c.n+'× in Qur\'an':''}</span>${faceB}
+     <div class="row" style="position:absolute;bottom:10px"><button class="btn sm ghost" id="f-sp">🔊</button><button class="btn sm ghost" id="f-st">${S.star[c.id]?'★':'☆'}</button></div></div></div></div>
+   <div class="rate" id="rt" style="visibility:${F.flip?'visible':'hidden'}">
+    <button class="btn bad" data-r="0">Again <small>(1)</small></button><button class="btn" data-r="1">Good <small>(2)</small></button><button class="btn ok" data-r="2">Easy <small>(3)</small></button></div>`;
+  $('#fci').onclick=e=>{if(e.target.closest('button'))return;flip()};
+  $('#f-quit').onclick=()=>{F=null;kbd=null;cards()};
+  $('#f-sp').onclick=e=>{e.stopPropagation();speak(arMain(c))};
+  $('#f-st').onclick=e=>{e.stopPropagation();S.star[c.id]?delete S.star[c.id]:S.star[c.id]=1;save();e.target.textContent=S.star[c.id]?'★':'☆'};
+  $$('#rt [data-r]').forEach(b=>b.onclick=()=>ans(+b.dataset.r));
+  function flip(){F.flip=!F.flip;$('#fc').classList.toggle('flip',F.flip);$('#rt').style.visibility=F.flip?'visible':'hidden';if(F.flip&&front==='en')speak(arMain(c))}
+  function ans(q){
+    if(!F.flip)return;rate(c.id,q);
+    if(q===0){F.again++;F.q.push(c.id);F.total=F.q.length}else F.good++;
+    F.i++;F.flip=false;fcShow()}
+  kbd=e=>{if(tab!=='cards'||!F)return;if(e.target.tagName==='INPUT'||$('#dlg').open)return;
+    if(e.code==='Space'||e.key==='Enter'){e.preventDefault();flip()}
+    else if(e.key==='1')ans(0);else if(e.key==='2')ans(1);else if(e.key==='3')ans(2);
+    else if(e.key==='s'||e.key==='S')$('#f-st').click()};
+  setClean(()=>{kbd=null});
+}
+/* ---------- EXAM ---------- */
+let E=null;
+function exam(){
+  if(E&&E.run)return qShow();
+  $('#app').innerHTML=`<div class="card"><h2>Exam</h2>
+   ${scopeUI('exam')}
+   <div class="grid g2"><div><label class="f">Question type</label><select id="x-t"><option value="mix">Mixed</option><option value="ar-en">Arabic → choose English</option><option value="en-ar">English → choose Arabic</option><option value="write">Arabic → type English</option><option value="tf">True / False</option></select></div>
+   <div><label class="f">Mode</label><select id="x-m"><option value="exam">Exam (answers shown at the end)</option><option value="practice">Practice (instant feedback)</option></select></div></div>
+   <label class="f">Number of questions: <b id="x-nv">20</b></label><input type="range" id="x-n" min="5" max="100" step="5" value="20">
+   <div class="row" style="margin-top:14px"><button class="btn" id="x-go">Start exam</button><span class="mute small" id="x-avail"></span></div></div>
+   ${S.hist.length?`<div class="card"><h3>Past results</h3>${S.hist.slice(0,5).map(h=>`<div class="row small" style="padding:4px 0;border-top:1px solid var(--line)"><b>${h.score}/${h.total}</b><span>${Math.round(h.score/h.total*100)}%</span><span class="mute">${esc(h.type)}</span><span class="sp"></span><span class="mute">${new Date(h.t).toLocaleString()}</span></div>`).join('')}</div>`:''}`;
+  const upd=()=>{$('#x-avail').textContent=scopeCards('exam').length+' cards match'};
+  bindScope('exam',upd);upd();
+  $('#x-n').oninput=e=>$('#x-nv').textContent=e.target.value;
+  $('#x-go').onclick=()=>{
+    const pool=scopeCards('exam');if(pool.length<4){toast('Need at least 4 cards in scope');return}
+    startExam(shuffle(pool).slice(0,+$('#x-n').value),$('#x-t').value,$('#x-m').value);
+  };
+}
+const mainEn=c=>c.en;
+function startExam(cs,type,mode){
+  const all=CARDS.filter(c=>c.k!=='c');
+  const qs=cs.map(c=>{
+    let t=type==='mix'?['ar-en','en-ar','write','tf'][Math.floor(Math.random()*4)]:type;
+    const sameKind=all.filter(x=>x.k===c.k&&x.id!==c.id),sameGrp=sameKind.filter(x=>x.s===c.s);
+    const pick=(txt)=>{const seen=new Set([txt(c)]),out=[];for(const x of shuffle(sameGrp).concat(shuffle(sameKind),shuffle(all))){const v=txt(x);if(!seen.has(v)){seen.add(v);out.push(x);if(out.length>=3)break}}return out};
+    const q={id:c.id,t};
+    if(t==='ar-en'){const o=shuffle([c].concat(pick(mainEn)));q.opts=o.map(x=>mainEn(x));q.ok=o.indexOf(c)}
+    else if(t==='en-ar'){const o=shuffle([c].concat(pick(arMain)));q.opts=o.map(x=>arMain(x));q.ok=o.indexOf(c)}
+    else if(t==='tf'){const truth=Math.random()<.5,w=pick(mainEn)[0];q.shown=truth?c:w;q.ok=truth?1:0;q.opts=['False','True']}
+    return q});
+  E={run:true,qs,i:0,ans:[],mode,type,t0:Date.now()};qShow();
+}
+function norm(s){return s.toLowerCase().replace(/\(.*?\)/g,' ').replace(/[^a-z0-9;,/ ]/g,'').replace(/\bto\b/g,' ').replace(/\s+/g,' ').trim()}
+function writeOk(typed,c){
+  const t=norm(typed);if(t.length<2)return false;
+  return norm(c.en).split(/[;,/]/).map(x=>x.trim()).filter(Boolean).some(x=>x===t||(t.length>=4&&(x.includes(t)||t.includes(x)))) ;
+}
+function qShow(){
+  if(E.i>=E.qs.length)return qDone();
+  const q=E.qs[E.i],c=byId(q.id);let locked=false;
+  let body='';
+  if(q.t==='ar-en'){body=`<div class="q-ar ar">${esc(arMain(c))}</div><p class="mute" style="text-align:center">Choose the meaning</p>${q.opts.map((o,i)=>`<button class="opt" data-o="${i}">${esc(o)}</button>`).join('')}`}
+  else if(q.t==='en-ar'){body=`<div class="q-en">${esc(c.en)}</div><p class="mute" style="text-align:center">Choose the Arabic</p>${q.opts.map((o,i)=>`<button class="opt ar" data-o="${i}">${esc(o)}</button>`).join('')}`}
+  else if(q.t==='tf'){body=`<div class="q-ar ar">${esc(arMain(c))}</div><div class="q-en">= ${esc(q.shown.en)} ?</div><div class="row" style="justify-content:center"><button class="opt" style="width:140px;text-align:center" data-o="1">True</button><button class="opt" style="width:140px;text-align:center" data-o="0">False</button></div>`}
+  else{body=`<div class="q-ar ar">${esc(arMain(c))}</div><p class="mute" style="text-align:center">Type the English meaning</p><input type="text" id="w-in" autocomplete="off" autocapitalize="off" placeholder="e.g. king" style="font-size:20px;text-align:center"><div class="row" style="justify-content:center;margin-top:10px"><button class="btn" id="w-ok">Check</button><button class="btn ghost" id="w-skip">I don't know</button></div>`}
+  $('#app').innerHTML=`<div class="row small mute"><span>Question ${E.i+1} / ${E.qs.length}</span><div class="bar2 sp"><i style="width:${E.i/E.qs.length*100}%"></i></div><button class="btn sm ghost" id="x-quit">End</button></div>
+   <div class="card" style="max-width:640px;margin:12px auto">${body}<div id="fb"></div></div>`;
+  $('#x-quit').onclick=()=>{if(confirm('End the exam now? Unanswered questions count as wrong.')){while(E.ans.length<E.qs.length)E.ans.push({v:null,r:false});E.i=E.qs.length;qShow()}};
+  const next=()=>{E.i++;qShow()};
+  const finish=(val,right,reveal)=>{
+    if(locked)return;locked=true;E.ans.push({v:val,r:right});
+    if(!right){const r=S.srs[c.id]||(S.srs[c.id]={box:0,due:0,wrong:0,seen:0});r.wrong++;r.box=0;r.due=Date.now()+6e5;save()}
+    if(E.mode==='practice'){
+      reveal&&reveal();
+      $('#fb').innerHTML=`<p style="text-align:center;font-weight:700;color:${right?'var(--ok)':'var(--bad)'}">${right?'Correct ✓':'Not quite ✗'}</p><div style="text-align:center"><div class="small mute">${esc(c.en)}</div>${formsHTML(c)}<button class="btn" id="nx" style="margin-top:12px">Next ↵</button></div>`;
+      $('#nx').onclick=next;$('#nx').focus();
+    }else next();
+  };
+  $$('[data-o]').forEach(b=>b.onclick=()=>{const o=+b.dataset.o;finish(o,o===q.ok,()=>{$$('[data-o]').forEach(x=>{x.disabled=true;if(+x.dataset.o===q.ok)x.classList.add('right')});if(o!==q.ok)b.classList.add('wrong')})});
+  if($('#w-in')){const w=$('#w-in');w.focus();
+    const chk=()=>{const t=w.value;finish(t,writeOk(t,c),()=>{w.disabled=true})};
+    $('#w-ok').onclick=chk;$('#w-skip').onclick=()=>finish('',false,()=>{w.disabled=true});
+    w.onkeydown=e=>{if(e.key==='Enter'&&!locked)chk()}}
+  kbd=e=>{if(tab!=='exam'||!E||!E.run)return;if(e.key==='Enter'&&locked&&$('#nx'))$('#nx').click();
+    if(!locked&&q.opts&&q.t!=='tf'&&/^[1-4]$/.test(e.key)){const b=$(`[data-o="${+e.key-1}"]`);b&&b.click()}};
+  setClean(()=>{kbd=null});
+}
+function qDone(){
+  kbd=null;
+  const score=E.ans.filter(a=>a.r).length,total=E.qs.length,secs_=Math.round((Date.now()-E.t0)/1000);
+  S.hist.unshift({t:Date.now(),score,total,secs:secs_,type:E.type==='mix'?'Mixed':E.type});S.hist=S.hist.slice(0,30);touchDay();save();
+  const wrong=E.qs.map((q,i)=>({q,a:E.ans[i]})).filter(x=>!x.a.r);
+  const pct=Math.round(score/total*100);
+  $('#app').innerHTML=`<div class="card" style="text-align:center"><h2>${pct>=90?'Excellent! 🌟':pct>=70?'Good job 👍':pct>=50?'Keep going 💪':'Needs more review 📚'}</h2>
+   <div class="ring" style="--p:${pct}"><div><span>${pct}%<small>${score}/${total}</small></span></div></div>
+   <p class="mute small">Time: ${Math.floor(secs_/60)}m ${secs_%60}s</p>
+   <div class="row" style="justify-content:center">${wrong.length?`<button class="btn" id="r-retry">Retry ${wrong.length} mistake${wrong.length>1?'s':''}</button><button class="btn sec" id="r-study">Study mistakes as cards</button>`:''}<button class="btn ghost" id="r-new">New exam</button></div></div>
+   ${wrong.length?`<div class="card"><h3>Review your mistakes</h3>${wrong.map(({q,a})=>{const c=byId(q.id);return `<div class="item" style="grid-template-columns:1fr auto;cursor:default"><div><b>${esc(c.en)}</b>${a.v!==null&&a.v!==''&&q.t==='write'?`<div class="small mute">You typed: ${esc(a.v)}</div>`:''}${q.t==='tf'?`<div class="small mute">Shown: ${esc(q.shown.en)}</div>`:''}</div><div class="ar" style="font-size:26px">${esc(arFull(c))}</div></div>`}).join('')}</div>`:''}`;
+  if(wrong.length){
+    $('#r-retry').onclick=()=>startExam(wrong.map(w=>byId(w.q.id)),E.type,E.mode);
+    $('#r-study').onclick=()=>{F={run:true,q:wrong.map(w=>w.q.id),i:0,flip:false,dir:'ar',total:wrong.length,again:0,good:0,flips:{}};E=null;go('cards')};
+  }
+  $('#r-new').onclick=()=>{E=null;exam()};
+  E.run=false;
+}
+/* ---------- MATCH ---------- */
+let M=null;
+function match(){
+  $('#app').innerHTML=`<div class="card"><h2>Match game</h2><p class="mute" style="margin-top:0">Tap an Arabic word, then its meaning. Clear the board as fast as you can.</p>
+   ${scopeUI('match')}<label class="f">Pairs: <b id="m-nv">6</b></label><input type="range" id="m-n" min="4" max="10" value="6">
+   <div class="row" style="margin-top:14px"><button class="btn" id="m-go">Start</button><span class="mute small" id="m-avail"></span></div></div><div id="mboard"></div>`;
+  const upd=()=>{$('#m-avail').textContent=scopeCards('match').filter(c=>c.k!=='c').length+' cards match'};
+  bindScope('match',upd);upd();
+  $('#m-n').oninput=e=>$('#m-nv').textContent=e.target.value;
+  $('#m-go').onclick=()=>{
+    const n=+$('#m-n').value,pool=scopeCards('match').filter(c=>c.k!=='c');if(pool.length<n){toast('Not enough cards in scope');return}
+    const cs=shuffle(pool).slice(0,n);
+    M={n,left:n,sel:null,t0:Date.now(),tiles:shuffle(cs.map(c=>({id:c.id,s:'ar',t:arMain(c)})).concat(cs.map(c=>({id:c.id,s:'en',t:c.en})))),miss:0};
+    drawMatch();
+  };
+  setClean(()=>{M=null});
+}
+function drawMatch(){
+  $('#mboard').innerHTML=`<div class="card"><div class="row small mute"><span>Pairs left: <b id="m-left">${M.left}</b></span><span>Misses: <b id="m-miss">${M.miss}</b></span><span class="sp"></span><span>⏱ <b id="m-t">0</b>s</span></div>
+   <div class="tiles" style="margin-top:10px">${M.tiles.map((t,i)=>`<button class="tile ${t.s==='ar'?'ar':''} ${t.done?'done':''}" data-i="${i}">${esc(t.t)}</button>`).join('')}</div></div>`;
+  const tm=setInterval(()=>{const e=$('#m-t');if(!e||!M)return clearInterval(tm);e.textContent=Math.round((Date.now()-M.t0)/1000)},500);
+  $$('.tile').forEach(b=>b.onclick=()=>{
+    const i=+b.dataset.i,t=M.tiles[i];if(t.done)return;
+    if(M.sel===null){M.sel=i;b.classList.add('sel');return}
+    if(M.sel===i){M.sel=null;b.classList.remove('sel');return}
+    const a=M.tiles[M.sel],ab=$(`.tile[data-i="${M.sel}"]`);
+    if(a.s===t.s){ab.classList.remove('sel');M.sel=i;b.classList.add('sel');return}
+    if(a.id===t.id){a.done=t.done=true;ab.classList.add('done');b.classList.add('done');M.left--;M.sel=null;$('#m-left').textContent=M.left;
+      if(!M.left){clearInterval(tm);const secs_=Math.round((Date.now()-M.t0)/1000),k='n'+M.n,pb=S.best[k];if(!pb||secs_<pb)S.best[k]=secs_;touchDay();save();
+        $('#mboard').innerHTML=`<div class="card" style="text-align:center"><h2>Cleared! 🎉</h2><p>${secs_}s with ${M.miss} miss${M.miss===1?'':'es'}.<br><span class="mute small">Best for ${M.n} pairs: ${S.best[k]}s</span></p><button class="btn" id="m-again">Play again</button></div>`;$('#m-again').onclick=()=>$('#m-go').click();M=null}}
+    else{M.miss++;$('#m-miss').textContent=M.miss;[ab,b].forEach(x=>x.classList.add('no'));M.sel=null;setTimeout(()=>[ab,b].forEach(x=>x&&x.classList.remove('no','sel')),500);
+      const r=S.srs[a.id]||(S.srs[a.id]={box:0,due:0,wrong:0,seen:0});r.wrong++;save()}
+  });
+}
+/* ---------- BOOK ---------- */
+let bookPage=7;const NPG=46;
+function book(){
+  const label=p=>p<=6?'Front matter':p<=14&&p>=7&&p<=14&&false?'':p>=8?`Book page ${p-7}`:'Introduction';
+  $('#app').innerHTML=`<div class="card"><div class="row"><button class="btn sm sec" id="bp">◀ Prev</button>
+    <select id="bsel" style="flex:1;min-width:150px">${Array.from({length:NPG},(_,i)=>i+1).map(p=>`<option value="${p}" ${p===bookPage?'selected':''}>PDF page ${p}${p>=8?' · book p.'+(p-7):p===1?' · cover':' · intro'}</option>`).join('')}</select>
+    <button class="btn sm sec" id="bn">Next ▶</button></div>
+    <details class="scope"><summary>Jump to a list</summary><div class="secs">${DB.secs.map(s=>`<a href="#" data-p="${s.p+7}" style="display:block;padding:3px 0;color:var(--pri)">${esc(s.t)} <span class="mute small">p.${s.p}</span></a>`).join('')}</div></details></div>
+   <img class="bookimg" id="bimg" alt="Book page" src="pages/p${String(bookPage).padStart(2,'0')}.jpg" onerror="this.alt='Page image not found — keep the pages folder next to index.html'">`;
+  const set=p=>{bookPage=Math.max(1,Math.min(NPG,p));book()};
+  $('#bp').onclick=()=>set(bookPage-1);$('#bn').onclick=()=>set(bookPage+1);$('#bsel').onchange=e=>set(+e.target.value);
+  $$('[data-p]').forEach(a=>a.onclick=e=>{e.preventDefault();set(+a.dataset.p)});
+  kbd=e=>{if(tab!=='book'||e.target.tagName==='SELECT')return;if(e.key==='ArrowLeft')set(bookPage-1);if(e.key==='ArrowRight')set(bookPage+1)};
+  setClean(()=>{kbd=null});
+}
+/* ---------- boot ---------- */
+applyTheme();addEventListener('hashchange',render);render();
+</script>
+</body>
+</html>
